@@ -8,6 +8,55 @@ on:
 permissions:
   contents: write
 
+env:
+  _CREATE_WINGET_MANIFEST: &create_winget_manifest
+    run: |
+      mkdir $PACKAGE_IDENTIFIER
+      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml << EOF
+      PackageIdentifier: $PACKAGE_IDENTIFIER
+      PackageVersion: $PACKAGE_VERSION
+      DefaultLocale: en-US
+      ManifestType: version
+      ManifestVersion: 1.10.0
+      EOF
+      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.locale.en-US.yaml << EOF
+      PackageIdentifier: $PACKAGE_IDENTIFIER
+      PackageVersion: $PACKAGE_VERSION
+      PackageLocale: en-US
+      Publisher: huanghongxun
+      PublisherUrl: https://github.com/HMCL-dev
+      PublisherSupportUrl: https://github.com/HMCL-dev/HMCL/issues
+      PackageName: Hello Minecraft! Launcher Dev
+      PackageUrl: https://github.com/HMCL-dev/HMCL
+      License: GPL-3.0
+      Copyright: Copyright (C) 2025 huangyuhui
+      ShortDescription: A Minecraft Launcher which is multi-functional, cross-platform and popular
+      Tags:
+      - javafx
+      - minecraft
+      - minecraft-launcher
+      ReleaseNotesUrl: https://docs.hmcl.net/changelog/$PACKAGE_CHANNEL.html#HMCL-$PACKAGE_VERSION
+      Documentations:
+      - DocumentLabel: Documentation
+        DocumentUrl: https://docs.hmcl.net
+      ManifestType: defaultLocale
+      ManifestVersion: 1.10.0
+      EOF
+      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml << EOF
+      PackageIdentifier: $PACKAGE_IDENTIFIER
+      PackageVersion: $PACKAGE_VERSION
+      InstallerType: portable
+      Commands:
+      - hmcl-$PACKAGE_CHANNEL
+      Installers:
+      - Architecture: neutral
+        InstallerUrl: $PACKAGE_INSTALLER_URL
+        InstallerSha256: $PACKAGE_INSTALLER_SHA256
+      ManifestType: installer
+      ManifestVersion: 1.10.0
+      EOF
+      komac submit $PACKAGE_IDENTIFIER --submit --token $KOMAC_TOKEN
+
 jobs:
   check-update:
     if: ${{ github.repository_owner == 'HMCL-dev' }}
@@ -55,6 +104,7 @@ jobs:
           export EXE_SHA256=$(cat HMCL-$HMCL_VERSION.exe.sha256 | tr -d '\n')
           export SH_SHA256=$(cat HMCL-$HMCL_VERSION.sh.sha256 | tr -d '\n')
           
+          echo "EXE_SHA256=$EXE_SHA256" >> $GITHUB_ENV
           echo "$JAR_SHA256  HMCL-$HMCL_VERSION.jar" | sha256sum -c
           echo "$EXE_SHA256  HMCL-$HMCL_VERSION.exe" | sha256sum -c
           echo "$SH_SHA256  HMCL-$HMCL_VERSION.sh" | sha256sum -c
@@ -103,13 +153,17 @@ jobs:
           rm ./komac.deb
         env:
           KOMAC_DEB_DOWNLOAD_URL: https://github.com/russellbanks/Komac/releases/download/v2.14.0/komac_2.14.0-1_amd64.deb
-      - name: Publish winget package from GitHub Releases
+      - name: Publish a winget manifest from GitHub Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        run: |
-          komac update ${{ matrix.winget-gh-release }} --version ${{ env.HMCL_VERSION }} --urls ${{ env.GH_DOWNLOAD_URL }} --submit --token ${{ secrets.KOMAC_TOKEN }}
         env:
-          GH_DOWNLOAD_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
+          PACKAGE_IDENTIFIER: ${{ matrix.winget-gh-release }}
+          PACKAGE_VERSION: ${{ env.HMCL_VERSION }}
+          PACKAGE_CHANNEL: ${{ matrix.channel }}
+          PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
+          PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
+          KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
+        <<: *create_winget_manifest
       - name: Install git-cnb
         if: ${{ env.continue == 'true' }}
         run: go install "cnb.cool/looc/git-cnb@$GIT_CNB_VERSION"
@@ -141,10 +195,14 @@ jobs:
         env:
           CNB_TOKEN: ${{ secrets.CNB_SYNC_TOKEN }}
           CNB_REPO: HMCL-dev/HMCL
-      - name: Publish winget package from CNB Releases
+      - name: Publish a winget manifest from CNB Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        run: |
-          komac update ${{ matrix.winget-cnb-release }} --version ${{ env.HMCL_VERSION }} --urls ${{ env.CNB_DOWNLOAD_URL }} --submit --token ${{ secrets.KOMAC_TOKEN }}
         env:
-          CNB_DOWNLOAD_URL: https://cnb.cool/HMCL-dev/HMCL/-/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
+          PACKAGE_IDENTIFIER: ${{ matrix.winget-cnb-release }}
+          PACKAGE_VERSION: ${{ env.HMCL_VERSION }}
+          PACKAGE_CHANNEL: ${{ matrix.channel }}
+          PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
+          PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
+          KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
+        <<: *create_winget_manifest
