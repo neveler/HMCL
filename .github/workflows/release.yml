@@ -33,7 +33,7 @@ jobs:
       - name: Mock
         run: |
           echo "continue=true" >> $GITHUB_ENV
-          echo "HMCL_VERSION=3.0.10.315" >> $GITHUB_ENV
+          echo "HMCL_VERSION=3.10.0.315" >> $GITHUB_ENV
           echo "EXE_SHA256=0000000000000000000000000000000000000000000000000000000000000000" >> $GITHUB_ENV
       - name: Install komac
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
