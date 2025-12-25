@@ -30,7 +30,7 @@ Tags:
 ReleaseNotesUrl: https://docs.hmcl.net/changelog/$PACKAGE_CHANNEL.html#HMCL-$PACKAGE_VERSION
 Documentations:
 - DocumentLabel: Documentation
-DocumentUrl: https://docs.hmcl.net
+  DocumentUrl: https://docs.hmcl.net
 ManifestType: defaultLocale
 ManifestVersion: 1.10.0
 EOF

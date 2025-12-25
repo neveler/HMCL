@@ -62,6 +62,6 @@ jobs:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-cnb-release }}
           PACKAGE_VERSION: ${{ env.HMCL_VERSION }}
           PACKAGE_CHANNEL: ${{ matrix.channel }}
-          PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
+          PACKAGE_INSTALLER_URL: https://cnb.cool/HMCL-dev/HMCL/-/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
           PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
           KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
