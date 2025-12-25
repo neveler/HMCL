@@ -10,53 +10,6 @@ permissions:
 
 env:
   KOMAC_DEB_DOWNLOAD_URL: https://github.com/russellbanks/Komac/releases/download/v2.14.0/komac_2.14.0-1_amd64.deb
-  _CREATE_WINGET_MANIFEST: &create_winget_manifest
-    run: |
-      mkdir $PACKAGE_IDENTIFIER
-      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml << EOF
-      PackageIdentifier: $PACKAGE_IDENTIFIER
-      PackageVersion: $PACKAGE_VERSION
-      DefaultLocale: en-US
-      ManifestType: version
-      ManifestVersion: 1.10.0
-      EOF
-      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.locale.en-US.yaml << EOF
-      PackageIdentifier: $PACKAGE_IDENTIFIER
-      PackageVersion: $PACKAGE_VERSION
-      PackageLocale: en-US
-      Publisher: huanghongxun
-      PublisherUrl: https://github.com/HMCL-dev
-      PublisherSupportUrl: https://github.com/HMCL-dev/HMCL/issues
-      PackageName: Hello Minecraft! Launcher Dev
-      PackageUrl: https://github.com/HMCL-dev/HMCL
-      License: GPL-3.0
-      Copyright: Copyright (C) 2025 huangyuhui
-      ShortDescription: A Minecraft Launcher which is multi-functional, cross-platform and popular
-      Tags:
-      - javafx
-      - minecraft
-      - minecraft-launcher
-      ReleaseNotesUrl: https://docs.hmcl.net/changelog/$PACKAGE_CHANNEL.html#HMCL-$PACKAGE_VERSION
-      Documentations:
-      - DocumentLabel: Documentation
-        DocumentUrl: https://docs.hmcl.net
-      ManifestType: defaultLocale
-      ManifestVersion: 1.10.0
-      EOF
-      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml << EOF
-      PackageIdentifier: $PACKAGE_IDENTIFIER
-      PackageVersion: $PACKAGE_VERSION
-      InstallerType: portable
-      Commands:
-      - hmcl-$PACKAGE_CHANNEL
-      Installers:
-      - Architecture: neutral
-        InstallerUrl: $PACKAGE_INSTALLER_URL
-        InstallerSha256: $PACKAGE_INSTALLER_SHA256
-      ManifestType: installer
-      ManifestVersion: 1.10.0
-      EOF
-      komac submit $PACKAGE_IDENTIFIER --submit --token $KOMAC_TOKEN
 
 jobs:
   check-update:
@@ -89,9 +42,56 @@ jobs:
           wget -O komac.deb ${{ env.KOMAC_DEB_DOWNLOAD_URL }}
           sudo apt install ./komac.deb -y
           rm ./komac.deb
-      - name: Publish a winget manifest from GitHub Releases
+      - &publish_winget_manifest
+        name: Publish a winget manifest from GitHub Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
+        run: |
+          mkdir $PACKAGE_IDENTIFIER
+          cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml << EOF
+          PackageIdentifier: $PACKAGE_IDENTIFIER
+          PackageVersion: $PACKAGE_VERSION
+          DefaultLocale: en-US
+          ManifestType: version
+          ManifestVersion: 1.10.0
+          EOF
+          cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.locale.en-US.yaml << EOF
+          PackageIdentifier: $PACKAGE_IDENTIFIER
+          PackageVersion: $PACKAGE_VERSION
+          PackageLocale: en-US
+          Publisher: huanghongxun
+          PublisherUrl: https://github.com/HMCL-dev
+          PublisherSupportUrl: https://github.com/HMCL-dev/HMCL/issues
+          PackageName: Hello Minecraft! Launcher Dev
+          PackageUrl: https://github.com/HMCL-dev/HMCL
+          License: GPL-3.0
+          Copyright: Copyright (C) 2025 huangyuhui
+          ShortDescription: A Minecraft Launcher which is multi-functional, cross-platform and popular
+          Tags:
+          - javafx
+          - minecraft
+          - minecraft-launcher
+          ReleaseNotesUrl: https://docs.hmcl.net/changelog/$PACKAGE_CHANNEL.html#HMCL-$PACKAGE_VERSION
+          Documentations:
+          - DocumentLabel: Documentation
+            DocumentUrl: https://docs.hmcl.net
+          ManifestType: defaultLocale
+          ManifestVersion: 1.10.0
+          EOF
+          cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml << EOF
+          PackageIdentifier: $PACKAGE_IDENTIFIER
+          PackageVersion: $PACKAGE_VERSION
+          InstallerType: portable
+          Commands:
+          - hmcl-$PACKAGE_CHANNEL
+          Installers:
+          - Architecture: neutral
+            InstallerUrl: $PACKAGE_INSTALLER_URL
+            InstallerSha256: $PACKAGE_INSTALLER_SHA256
+          ManifestType: installer
+          ManifestVersion: 1.10.0
+          EOF
+          komac submit $PACKAGE_IDENTIFIER --token $KOMAC_TOKEN
         env:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-gh-release }}
           PACKAGE_VERSION: ${{ env.HMCL_VERSION }}
@@ -99,7 +99,6 @@ jobs:
           PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
           PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
           KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
-        <<: *create_winget_manifest
       - name: Publish a winget manifest from CNB Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
@@ -110,4 +109,4 @@ jobs:
           PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
           PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
           KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
-        <<: *create_winget_manifest
+        <<: *publish_winget_manifest
