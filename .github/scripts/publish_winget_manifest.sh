@@ -9,6 +9,7 @@ DefaultLocale: en-US
 ManifestType: version
 ManifestVersion: 1.10.0
 EOF
+cat $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml
 
 cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.locale.en-US.yaml << EOF
 PackageIdentifier: $PACKAGE_IDENTIFIER
@@ -33,6 +34,7 @@ DocumentUrl: https://docs.hmcl.net
 ManifestType: defaultLocale
 ManifestVersion: 1.10.0
 EOF
+cat $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.locale.en-US.yaml
 
 cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml << EOF
 PackageIdentifier: $PACKAGE_IDENTIFIER
@@ -47,7 +49,8 @@ InstallerSha256: $PACKAGE_INSTALLER_SHA256
 ManifestType: installer
 ManifestVersion: 1.10.0
 EOF
+cat $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml
 
-komac submit $PACKAGE_IDENTIFIER --token $KOMAC_TOKEN
+# komac submit $PACKAGE_IDENTIFIER --token $KOMAC_TOKEN
 
 rm -rf $PACKAGE_IDENTIFIER
