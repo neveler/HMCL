@@ -42,7 +42,7 @@ env:
       ManifestType: defaultLocale
       ManifestVersion: 1.10.0
       EOF
-      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.yaml << EOF
+      cat > $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml << EOF
       PackageIdentifier: $PACKAGE_IDENTIFIER
       PackageVersion: $PACKAGE_VERSION
       InstallerType: portable
