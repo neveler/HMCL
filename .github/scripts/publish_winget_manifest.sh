@@ -44,8 +44,8 @@ Commands:
 - hmcl-$PACKAGE_CHANNEL
 Installers:
 - Architecture: neutral
-InstallerUrl: $PACKAGE_INSTALLER_URL
-InstallerSha256: $PACKAGE_INSTALLER_SHA256
+  InstallerUrl: $PACKAGE_INSTALLER_URL
+  InstallerSha256: $PACKAGE_INSTALLER_SHA256
 ManifestType: installer
 ManifestVersion: 1.10.0
 EOF
