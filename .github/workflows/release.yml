@@ -2,8 +2,16 @@ name: Create Release
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: '30 * * * *'
+    inputs:
+      channel:
+        description: Channel
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - dev
+          - stable
 
 permissions:
   contents: write
@@ -23,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     name: check-update-${{ matrix.channel }}
     steps:
+      - name: Skip
+        if: ${{ github.event.inputs.channel != 'all' && github.event.inputs.channel != matrix.channel }}
+        run: exit 0
       - name: Checkout
         uses: actions/checkout@v6
         with:
