@@ -116,22 +116,13 @@
     -fx-font-weight: bold;
 }
 
-.memory-label {
-}
+$memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, total: -monet-surface-container);
 
-.memory-used {
-    @include disabled-opacity;
-    -fx-background-color: -monet-primary;
-}
-
-.memory-allocate {
-    @include disabled-opacity;
-    -fx-background-color: -monet-primary-transparent-50;
-}
-
-.memory-total {
-    @include disabled-opacity;
-    -fx-background-color: -monet-surface-container;
+@each $memory-type, $memory-background-color in $memory-types {
+    .memory-#{$memory-type} {
+        @include disabled-opacity;
+        -fx-background-color: #{$memory-background-color};
+    }
 }
 
 .update-label {
@@ -246,7 +237,7 @@
     -fx-text-fill: -monet-on-surface;
     -fx-font-size: 20px;
     -fx-wrap-text: true;
-    -fx-text-alignment: CENTER;
+    -fx-text-alignment: center;
 }
 
 .class-title {
@@ -281,7 +272,7 @@
         -fx-padding: 10px 16px 10px 16px;
         -fx-spacing: 10px;
         -fx-font-size: 14px;
-        -fx-alignment: CENTER_LEFT;
+        -fx-alignment: center-left;
     }
 }
 
@@ -292,7 +283,7 @@
         -fx-padding: 8px 16px 8px 16px;
         -fx-spacing: 10px;
         -fx-font-size: 12px;
-        -fx-alignment: CENTER_LEFT;
+        -fx-alignment: center-left;
     }
 }
 
@@ -305,7 +296,7 @@
 }
 
 .popup-menu-content {
-    -fx-padding: 4 0 4 0;
+    -fx-padding: 4px 0 4px 0;
 }
 
 .two-line-list-item {
@@ -313,13 +304,13 @@
         & > .title {
             -fx-text-fill: -monet-on-surface;
             -fx-font-size: 15px;
-            -fx-padding: 0 8 0 0;
+            -fx-padding: 0 8px 0 0;
         }
 
         & > .tag {
             -fx-text-fill: -monet-on-secondary-container;
             -fx-background-color: -monet-secondary-container;
-            -fx-padding: 2;
+            -fx-padding: 2px;
             -fx-font-weight: normal;
             -fx-font-size: 12px;
         }
@@ -327,7 +318,7 @@
         & > .tag-warning {
             -fx-text-fill: -monet-on-error-container;
             -fx-background-color: -fixed-warning-tag-background;
-            -fx-padding: 2;
+            -fx-padding: 2px;
             -fx-font-weight: normal;
             -fx-font-size: 12px;
         }
@@ -403,7 +394,7 @@
 
     &:list-item {
         -fx-border-color: -monet-outline-variant;
-        -fx-border-width: 0 0 1 0;
+        -fx-border-width: 0 0 1px 0;
         -fx-alignment: center-left;
 
         * > .installer-item-name {
@@ -417,7 +408,7 @@
 
     &:card {
         -fx-background-color: -monet-surface;
-        -fx-background-radius: 4;
+        -fx-background-radius: 4px;
         -fx-alignment: center;
         -fx-pref-width: 180px;
 
@@ -560,7 +551,7 @@
 
 .jfx-popup-container {
     -fx-background-color: -monet-surface;
-    -fx-background-radius: 4;
+    -fx-background-radius: 4px;
 }
 
 .popup-list-view {
@@ -654,8 +645,8 @@
         -fx-pref-height: 42px;
         -fx-padding: 2px;
         -fx-background-color: -monet-primary-container;
-        -fx-alignment: CENTER-LEFT;
-        -fx-spacing: 8;
+        -fx-alignment: center-left;
+        -fx-spacing: 8px;
 
         & .label {
             -fx-text-fill: -monet-on-primary-container;
@@ -963,7 +954,7 @@
 
 .card-non-transparent {
     -fx-background-color: -monet-surface-container-low;
-    -fx-background-radius: 4;
+    -fx-background-radius: 4px;
     -fx-padding: 8px;
 
     -fx-effect: dropshadow(gaussian, #00000042, 5, 0.06, -0.5, 1);
@@ -1531,18 +1522,18 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     }
 
     &-title {
-        -fx-font-size: 14;
+        -fx-font-size: 14px;
     }
 }
 
 .window {
     -fx-background-color: transparent;
-    -fx-padding: 8;
+    -fx-padding: 8px;
 }
 
 .debug-border {
     -fx-border-color: red;
-    -fx-border-width: 1;
+    -fx-border-width: 1px;
 }
 
 .content-background {
