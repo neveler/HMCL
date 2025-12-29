@@ -19,7 +19,7 @@ import java.util.zip.ZipFile
 
 plugins {
     alias(libs.plugins.shadow)
-    id("io.freefair.sass-base") version "9.1.0"
+    alias(libs.plugins.sass)
 }
 
 val projectConfig = PropertiesUtils.load(rootProject.file("config/project.properties").toPath())
