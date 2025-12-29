@@ -16,6 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@mixin disabled-opacity {
+    &:disabled {
+        -fx-opacity: 0.4;
+    }
+}
+
 .root {
 }
 
@@ -50,56 +56,56 @@
 }
 
 .hint {
-    -fx-background-radius: 5;
-    -fx-border-width: 1;
-    -fx-border-radius: 5;
-    -fx-padding: 6;
-}
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 6px;
 
-.hint .hyperlink {
-    -fx-fill: -monet-primary;
-    -fx-text-fill: -monet-primary;
-}
+    & .hyperlink {
+        -fx-fill: -monet-primary;
+        -fx-text-fill: -monet-primary;
+    }
 
-.hint.info {
-    -fx-background-color: -monet-primary-fixed-dim;
-    -fx-border-color: -monet-outline;
-}
+    &.info {
+        -fx-background-color: -monet-primary-fixed-dim;
+        -fx-border-color: -monet-outline;
 
-.hint.info Text, .hint.info .svg {
-    -fx-fill: -monet-on-primary-fixed;
-}
+        & Text, & .svg {
+            -fx-fill: -monet-on-primary-fixed;
+        }
+    }
 
-.hint.success {
-    -fx-background-color: #d1e7dd;
-    -fx-border-color: -monet-outline;
-}
+    &.success {
+        -fx-background-color: #d1e7dd;
+        -fx-border-color: -monet-outline;
 
-.hint.success Text, .hint.success .svg {
-    -fx-fill: #0a3622;
-}
+        & Text, & .svg {
+            -fx-fill: #0a3622;
+        }
+    }
 
-.hint.error {
-    -fx-background-color: -monet-error-container;
-    -fx-border-color: -monet-outline;
-}
+    &.error {
+        -fx-background-color: -monet-error-container;
+        -fx-border-color: -monet-outline;
 
-.hint.error Text, .hint.error .svg {
-    -fx-fill: -monet-on-error-container;
-}
+        & Text, & .svg {
+            -fx-fill: -monet-on-error-container;
+        }
+    }
 
-.hint.warning {
-    -fx-background-color: -monet-tertiary-fixed-dim;
-    -fx-border-color: -monet-outline;
-}
+    &.warning {
+        -fx-background-color: -monet-tertiary-fixed-dim;
+        -fx-border-color: -monet-outline;
 
-.hint.warning Text, .hint.warning .svg {
-    -fx-fill: -monet-on-tertiary-fixed;
-}
+        & Text, & .svg {
+            -fx-fill: -monet-on-tertiary-fixed;
+        }
 
-.hint.warning .hyperlink {
-    -fx-fill: -fx-hyperlink-fill;
-    -fx-text-fill: -fx-hyperlink-fill;
+        & .hyperlink {
+            -fx-fill: -fx-hyperlink-fill;
+            -fx-text-fill: -fx-hyperlink-fill;
+        }
+    }
 }
 
 .skin-pane .jfx-text-field {
@@ -114,27 +120,18 @@
 }
 
 .memory-used {
+    @include disabled-opacity;
     -fx-background-color: -monet-primary;
 }
 
-.memory-used:disabled {
-    -fx-opacity: 0.4;
-}
-
 .memory-allocate {
+    @include disabled-opacity;
     -fx-background-color: -monet-primary-transparent-50;
 }
 
-.memory-allocate:disabled {
-    -fx-opacity: 0.4;
-}
-
 .memory-total {
+    @include disabled-opacity;
     -fx-background-color: -monet-surface-container;
-}
-
-.memory-total:disabled {
-    -fx-opacity: 0.4;
 }
 
 .update-label {
@@ -719,10 +716,6 @@
     -fx-fill: -monet-on-surface;
 }
 
-.jfx-slider:disabled {
-    -fx-opacity: 0.4;
-}
-
 /*******************************************************
 *                           						   *
 * For the main demo sliders 						   *
@@ -730,6 +723,7 @@
 *******************************************************/
 
 .jfx-slider {
+    @include disabled-opacity;
     -jfx-indicator-position: right;
 }
 
@@ -1408,45 +1402,46 @@ $levels: (fatal, error, warn, info, debug, trace);
     -jfx-unfocus-color: transparent;
     -fx-background-color: -monet-surface-container-highest;
     -fx-padding: 4px;
-    -fx-max-width: 1000000000;
-}
+    -fx-max-width: 1000000000px;
 
-.jfx-combo-box .text {
-    -fx-fill: -monet-on-surface;
-}
+    & .text {
+        -fx-fill: -monet-on-surface;
+    }
 
-.jfx-combo-box .text-field {
-    -fx-text-fill: -monet-on-surface;
+    & .text-field {
+        -fx-text-fill: -monet-on-surface;
+    }
+
+    &-warning {
+        -jfx-focus-color: #D34336;
+        -jfx-unfocus-color: #D34336;
+
+        & .text {
+            -fx-fill: #D34336;
+        }
+    }
 }
 
 .combo-box-popup .list-view {
     -fx-background-color: -monet-surface-container;
-}
 
-.combo-box-popup .list-view .jfx-list-cell {
-    -fx-background-color: -monet-surface-container;
-    -fx-text-fill: -monet-on-surface;
-    -fx-background-insets: 0;
-}
+    & .jfx-list-cell {
+        -fx-background-color: -monet-surface-container;
+        -fx-text-fill: -monet-on-surface;
+        -fx-background-insets: 0;
 
-.combo-box-popup .list-view .list-cell:odd:selected > .jfx-rippler > StackPane,
-.combo-box-popup .list-view .list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: -monet-secondary-container;
-    -fx-text-fill: -monet-on-secondary-container;
-}
+        // & .jfx-rippler {
+        //     -jfx-rippler-fill: -monet-primary-container;
+        // }
+    }
 
-.jfx-combo-box-warning {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    & .list-cell:odd, & .list-cell:even {
+        &:selected > .jfx-rippler > StackPane {
+        -fx-background-color: -monet-secondary-container;
+        -fx-text-fill: -monet-on-secondary-container;
+        }
+    }
 }
-
-.jfx-combo-box-warning .text {
-    -fx-fill: #D34336;
-}
-
-/*.combo-box-popup .list-view .jfx-list-cell .jfx-rippler {*/
-/*    -jfx-rippler-fill: -monet-primary-container;*/
-/*}*/
 
 /*******************************************************************************
 *                                                                              *
@@ -1454,49 +1449,51 @@ $levels: (fatal, error, warn, info, debug, trace);
 *                                                                              *
 *******************************************************************************/
 
-.jfx-color-picker:armed,
-.jfx-color-picker:hover,
-.jfx-color-picker:focused,
 .jfx-color-picker {
-    -fx-background-color: transparent;
-    -fx-background-radius: 3px;
-    -fx-background-insets: 0;
-    -fx-min-height: 25px;
-}
-
-.color-palette-region {
-}
-
-.color-palette-region .jfx-button {
-    -fx-text-fill: -monet-on-surface;
+    &, &:armed, &:hover, &:focused {
+        -fx-background-color: transparent;
+        -fx-background-radius: 3px;
+        -fx-background-insets: 0;
+        -fx-min-height: 25px;
+    }
 }
 
 .color-palette {
     -fx-background-color: -monet-surface;
+
+    &-region {
+        & .jfx-button {
+            -fx-text-fill: -monet-on-surface;
+        }
+    }
 }
 
-.custom-color-dialog .jfx-tab-pane {
-    -fx-background-color: -monet-surface;
-}
+.custom-color-dialog {
+    & .jfx-tab-pane {
+        -fx-background-color: -monet-surface;
+    }
 
-.custom-color-dialog .custom-color-field {
-    -jfx-unfocus-color: -monet-on-surface;
-    -fx-background-color: transparent;
-    -fx-font-weight: BOLD;
-    -fx-alignment: top-left;
-    -fx-max-width: 300px;
-}
+    & .custom-color-field {
+        -jfx-unfocus-color: -monet-on-surface;
+        -fx-background-color: transparent;
+        -fx-font-weight: BOLD;
+        -fx-alignment: top-left;
+        -fx-max-width: 300px;
+    }
 
-.custom-color-dialog .tab .tab-label {
-    -fx-text-fill: -monet-on-surface;
-}
+    & .tab {
+        & .tab-label {
+            -fx-text-fill: -monet-on-surface;
+        }
 
-.custom-color-dialog .tab .jfx-rippler {
-    -jfx-rippler-fill: -monet-on-surface;
-}
+        & .jfx-rippler {
+            -jfx-rippler-fill: -monet-on-surface;
+        }
+    }
 
-.custom-color-dialog .tab-selected-line {
-    -fx-background-color: -monet-on-surface;
+    & .tab-selected-line {
+        -fx-background-color: -monet-on-surface;
+    }
 }
 
 /*******************************************************************************
@@ -1685,12 +1682,10 @@ $levels: (fatal, error, warn, info, debug, trace);
  ******************************************************************************/
 
 .scroll-pane {
-    -fx: {
-        background-color: transparent;
-        background-insets: 0;
-        padding: 0;
-        snap-to-pixel: false;
-    }
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-snap-to-pixel: false;
 
     &:focused {
         -fx-background-insets: 0;
@@ -1756,18 +1751,26 @@ $levels: (fatal, error, warn, info, debug, trace);
 *******************************************************************************/
 
 .html {
-  -fx-font-size: 16px;
+    -fx-font-size: 16px;
 
-  &-hyperlink {
-    -fx-fill: -monet-primary;
-  }
+    &-hyperlink {
+        -fx-fill: -monet-primary;
+    }
 
-  &-h1 { -fx-font-size: 22px; }
-  &-h2 { -fx-font-size: 20px; }
-  &-h3 { -fx-font-size: 18px; }
+    $levels: 1, 2, 3;
+    @each $level in $levels {
+        &-h#{$level} {
+            -fx-font-size: 24px - $level * 2px;
+        }
+    }
 
-  &-bold { -fx-font-weight: bold; }
-  &-italic { -fx-font-style: italic; }
+    &-bold {
+        -fx-font-weight: bold;
+    }
+
+    &-italic {
+        -fx-font-style: italic;
+    }
 }
 
 /*******************************************************************************
