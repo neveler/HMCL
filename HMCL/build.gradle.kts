@@ -147,9 +147,7 @@ tasks.compileJava {
 }
 
 val compileScss by tasks.registering(SassCompile::class) {
-    group = "build"
-    description = "Compile SCSS files to CSS"
-    source = fileTree("src/main/resources/assets/css") {
+    source = fileTree("src/main/scss") {
         include("**/*.scss")
     }
     sourceMapEnabled = false;
