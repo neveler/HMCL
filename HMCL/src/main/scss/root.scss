@@ -145,23 +145,23 @@
 }
 
 .announcement {
-    -fx-padding: 16;
-}
+    -fx-padding: 16px;
 
-.announcement .title {
-    -fx-text-fill: -monet-on-surface;
-    -fx-font-size: 14px;
-    -fx-font-weight: BOLD;
-}
+    & .title {
+        -fx-text-fill: -monet-on-surface;
+        -fx-font-size: 14px;
+        -fx-font-weight: BOLD;
+    }
 
-.announcement Text {
-    -fx-fill: -monet-on-surface;
-    -fx-font-size: 13px;
-}
+    & Text {
+        -fx-fill: -monet-on-surface;
+        -fx-font-size: 13px;
+    }
 
-.announcement .hyperlink {
-    -fx-fill: -monet-primary;
-    -fx-font-size: 13px;
+    & .hyperlink {
+        -fx-fill: -monet-primary;
+        -fx-font-size: 13px;
+    }
 }
 
 .rippler-container {
@@ -173,22 +173,22 @@
 }
 
 .advanced-list-item > .rippler-container > .container {
-    -fx-padding: 10 16 10 16;
+    -fx-padding: 10px 16px 10px 16px;
     -fx-background-color: transparent;
 }
 
 .advanced-list-item > .rippler-container > .container > .two-line-list-item {
     -fx-alignment: center-left;
-    -fx-padding: 0 0 0 10;
+    -fx-padding: 0 0 0 10px;
 }
 
 .advanced-list-item > .rippler-container > .container > .two-line-list-item > .first-line > .title {
-    -fx-font-size: 13;
+    -fx-font-size: 13px;
     -fx-text-alignment: justify;
 }
 
 .advanced-list-item > .rippler-container > .container > .two-line-list-item > HBox > .subtitle {
-    -fx-font-size: 10;
+    -fx-font-size: 10px;
     -fx-text-alignment: justify;
 }
 
@@ -206,19 +206,19 @@
 }
 
 .navigation-drawer-item > .rippler-container > .container > VBox {
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
 }
 
 .profile-list-item > .rippler-container > BorderPane > .two-line-list-item > .first-line > .title {
-    -fx-font-size: 13;
+    -fx-font-size: 13px;
 }
 
 .profile-list-item > .rippler-container > BorderPane > .two-line-list-item > HBox > .subtitle {
-    -fx-font-size: 10;
+    -fx-font-size: 10px;
 }
 
 .profile-list-item > .rippler-container > BorderPane {
-    -fx-padding: 8 0 8 16;
+    -fx-padding: 8px 0 8px 16px;
 }
 
 .profile-list-item:selected > .rippler-container > BorderPane {
@@ -236,60 +236,60 @@
 
 .notice-pane > .label {
     -fx-text-fill: -monet-on-surface;
-    -fx-font-size: 20;
+    -fx-font-size: 20px;
     -fx-wrap-text: true;
     -fx-text-alignment: CENTER;
 }
 
 .class-title {
     -fx-font-size: 12px;
-    -fx-padding: 8 16 8 16;
-}
+    -fx-padding: 8px 16px 8px 16px;
 
-.class-title Text {
-    -fx-fill: -monet-on-surface;
-}
+    & Text {
+        -fx-fill: -monet-on-surface;
+    }
 
-.class-title Rectangle {
-    -fx-fill: -monet-on-surface-variant;
+    & Rectangle {
+        -fx-fill: -monet-on-surface-variant;
+    }
 }
 
 .advanced-list-box-item {
 }
 
 .advanced-list-box-content {
-    -fx-padding: 12 0 0 0;
+    -fx-padding: 12px 0 0 0;
     -fx-spacing: 0;
 }
 
 .no-padding .advanced-list-box-content {
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
 }
 
 .iconed-item {
     -jfx-rippler-fill: -monet-secondary-container;
-}
-
-.iconed-item .iconed-item-container {
-    -fx-padding: 10 16 10 16;
-    -fx-spacing: 10;
-    -fx-font-size: 14;
-    -fx-alignment: CENTER_LEFT;
+    
+    & .iconed-item-container {
+        -fx-padding: 10px 16px 10px 16px;
+        -fx-spacing: 10px;
+        -fx-font-size: 14px;
+        -fx-alignment: CENTER_LEFT;
+    }
 }
 
 .iconed-menu-item {
     -jfx-rippler-fill: -monet-secondary-container;
-}
 
-.iconed-menu-item .iconed-item-container {
-    -fx-padding: 8 16 8 16;
-    -fx-spacing: 10;
-    -fx-font-size: 12;
-    -fx-alignment: CENTER_LEFT;
+    & .iconed-item-container {
+        -fx-padding: 8px 16px 8px 16px;
+        -fx-spacing: 10px;
+        -fx-font-size: 12px;
+        -fx-alignment: CENTER_LEFT;
+    }
 }
 
 .menu-container {
-    -fx-padding: 8 16 8 16;
+    -fx-padding: 8px 16px 8px 16px;
 }
 
 .popup-menu .scroll-bar .thumb {
@@ -300,51 +300,53 @@
     -fx-padding: 4 0 4 0;
 }
 
-.two-line-list-item > .first-line > .title {
-    -fx-text-fill: -monet-on-surface;
-    -fx-font-size: 15px;
-    -fx-padding: 0 8 0 0;
-}
+.two-line-list-item {
+    & > .first-line {
+        & > .title {
+            -fx-text-fill: -monet-on-surface;
+            -fx-font-size: 15px;
+            -fx-padding: 0 8 0 0;
+        }
 
-.two-line-list-item > HBox > .subtitle {
-    -fx-text-fill: -monet-on-surface-variant;
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
-}
+        & > .tag {
+            -fx-text-fill: -monet-on-secondary-container;
+            -fx-background-color: -monet-secondary-container;
+            -fx-padding: 2;
+            -fx-font-weight: normal;
+            -fx-font-size: 12px;
+        }
 
-.two-line-list-item > .second-line > .subtitle Text {
-    -fx-fill: -monet-on-surface-variant;
-}
+        & > .tag-warning {
+            -fx-text-fill: -monet-on-error-container;
+            -fx-background-color: -fixed-warning-tag-background;
+            -fx-padding: 2;
+            -fx-font-weight: normal;
+            -fx-font-size: 12px;
+        }
+    }
 
-.two-line-list-item > .first-line > .tag {
-    -fx-text-fill: -monet-on-secondary-container;
-    -fx-background-color: -monet-secondary-container;
-    -fx-padding: 2;
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
-}
+    & > HBox > .subtitle {
+        -fx-text-fill: -monet-on-surface-variant;
+        -fx-font-weight: normal;
+        -fx-font-size: 12px;
+    }
 
-.two-line-list-item > .first-line > .tag-warning {
-    -fx-text-fill: -monet-on-error-container;
-    -fx-background-color: -fixed-warning-tag-background;
-    -fx-padding: 2;
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
+    & > .second-line > .subtitle Text {
+        -fx-fill: -monet-on-surface-variant;
+    }
 }
 
 .two-line-item-second-large {
+    & > .first-line > .title, .two-line-item-second-large-title {
+        -fx-text-fill: -monet-on-surface-variant;
+        -fx-font-weight: normal;
+        -fx-font-size: 12px;
+    }
 
-}
-
-.two-line-item-second-large > .first-line > .title, .two-line-item-second-large-title {
-    -fx-text-fill: -monet-on-surface-variant;
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
-}
-
-.two-line-item-second-large > HBox > .subtitle {
-    -fx-text-fill: -monet-on-surface;
-    -fx-font-size: 15px;
+    & > HBox > .subtitle {
+        -fx-text-fill: -monet-on-surface;
+        -fx-font-size: 15px;
+    }
 }
 
 .terracotta-hint Text {
@@ -353,14 +355,16 @@
 
 .game-crash-window {
     -fx-background-color: -monet-surface-container;
-}
 
-.game-crash-window .crash-reason-text-flow Text {
-    -fx-fill: -monet-on-surface;
-}
+    & .crash-reason-text-flow {
+        & Text {
+            -fx-fill: -monet-on-surface;
+        }
 
-.game-crash-window .crash-reason-text-flow .hyperlink {
-    -fx-fill: -monet-primary;
+        & .hyperlink {
+            -fx-fill: -monet-primary;
+        }
+    }
 }
 
 .wrap-text > HBox > .subtitle {
@@ -370,15 +374,16 @@
 .bubble {
     -fx-background-color: -monet-inverse-surface-transparent-80;
     -fx-background-radius: 2px;
-}
 
-.bubble > HBox > .two-line-list-item > .first-line > .title,
-.bubble > HBox > .two-line-list-item > HBox > .subtitle {
-    -fx-text-fill: -monet-inverse-on-surface;
-}
+    & > HBox > .two-line-list-item {
+        & > .first-line > .title, & > HBox > .subtitle {
+            -fx-text-fill: -monet-inverse-on-surface;
+        }
+    }
 
-.bubble .svg {
-    -fx-fill: -monet-inverse-on-surface;
+    & .svg {
+        -fx-fill: -monet-inverse-on-surface;
+    }
 }
 
 .sponsor-pane {
@@ -387,29 +392,29 @@
 
 .installer-item {
     -fx-padding: 8px;
-}
 
-.installer-item:list-item {
-    -fx-border-color: -monet-outline-variant;
-    -fx-border-width: 0 0 1 0;
-    -fx-alignment: center-left;
-}
+    &:list-item {
+        -fx-border-color: -monet-outline-variant;
+        -fx-border-width: 0 0 1 0;
+        -fx-alignment: center-left;
 
-.installer-item:list-item > .installer-item-name {
-    -fx-pref-width: 80px;
-}
+        * > .installer-item-name {
+            -fx-pref-width: 80px;
+        }
 
-.installer-item:list-item > .installer-item-status {
-    -fx-max-width: infinity;
-}
+        & > .installer-item-status {
+            -fx-max-width: infinity;
+        }
+    }
 
-.installer-item:card {
-    -fx-background-color: -monet-surface;
-    -fx-background-radius: 4;
-    -fx-alignment: center;
-    -fx-pref-width: 180px;
+    &:card {
+        -fx-background-color: -monet-surface;
+        -fx-background-radius: 4;
+        -fx-alignment: center;
+        -fx-pref-width: 180px;
 
-    -fx-effect: dropshadow(gaussian, #00000042, 10, 0.12, -1, 2);
+        -fx-effect: dropshadow(gaussian, #00000042, 10, 0.12, -1, 2);
+    }
 }
 
 /*******************************************************************************
@@ -418,28 +423,30 @@
  *                                                                             *
  ******************************************************************************/
 
-.launch-pane > .jfx-button {
-    -fx-background-color: -monet-primary-container;
-    -fx-cursor: hand;
-}
+.launch-pane {
+    & > .jfx-button {
+        -fx-background-color: -monet-primary-container;
+        -fx-cursor: hand;
 
-.launch-pane > .jfx-button > StackPane > .jfx-rippler {
-    -jfx-rippler-fill: -monet-on-primary-container;
-    -jfx-mask-type: CIRCLE;
-    -fx-padding: 0;
-}
+        & > StackPane > .jfx-rippler {
+            -jfx-rippler-fill: -monet-on-primary-container;
+            -jfx-mask-type: CIRCLE;
+            -fx-padding: 0;
+        }
 
-.launch-pane > .jfx-button, .jfx-button * {
-    -fx-text-fill: -monet-on-primary-container;
-    -fx-font-size: 14px;
-}
+        &, & * {
+            -fx-text-fill: -monet-on-primary-container;
+            -fx-font-size: 14px;
+        }
+    }
 
-.launch-pane .svg {
-    -fx-fill: -monet-on-primary-container;
-}
+    & .svg {
+        -fx-fill: -monet-on-primary-container;
+    }
 
-.launch-pane > Rectangle {
-    -fx-fill: -monet-primary-container;
+    & > Rectangle {
+        -fx-fill: -monet-primary-container;
+    }
 }
 
 /*******************************************************************************
@@ -466,15 +473,12 @@
 }
 
 .tab-label {
-    -fx-font-size: 16;
-}
-
-.tab-label {
-    -fx-padding: 10 17 10 17;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 17px 10px 17px;
 }
 
 .add-account-tab-header .tab-label {
-    -fx-font-size: 12;
+    -fx-font-size: 12px;
 }
 
 /*******************************************************************************
@@ -504,10 +508,10 @@
 .jfx-layout-body {
     -fx-pref-width: 400px;
     -fx-wrap-text: true;
-}
 
-.jfx-layout-body Text {
-    -fx-fill: -monet-on-surface;
+    & Text {
+        -fx-fill: -monet-on-surface;
+    }
 }
 
 .jfx-layout-actions {
@@ -535,7 +539,6 @@
     -fx-background-color: -monet-surface-container-high;
     -fx-text-fill: -monet-on-surface;
 }
-
 
 /*******************************************************************************
  *                                                                             *
@@ -592,88 +595,86 @@
     -fx-min-height: 40px;
     -fx-max-height: 40px;
     -fx-pref-height: 40px;
-}
 
-.jfx-tool-bar .jfx-decorator-title {
-    -fx-font-weight: BOLD;
-}
+    &.background {
+        -fx-background-color: -monet-primary-container;
+    }
 
-.jfx-tool-bar.background {
-    -fx-background-color: -monet-primary-container;
-}
+    & .jfx-decorator-title {
+        -fx-font-weight: BOLD;
+    }
 
-/*.jfx-tool-bar HBox {*/
-/*    -fx-alignment: center-left;*/
-/*    -fx-padding: 0 5px;*/
-/*}*/
+    // & HBox {
+    //     -fx-alignment: center-left;
+    //     -fx-padding: 0 5px;
+    // }
 
-.jfx-tool-bar .jfx-decorator-button {
-    -fx-min-width: 40px;
-    -fx-max-width: 40px;
-    -fx-pref-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
-    -fx-pref-height: 40px;
-    -fx-cursor: hand;
-}
+    & .jfx-decorator-button {
+        $size: 40px;
+        -fx-min-width: $size;
+        -fx-max-width: $size;
+        -fx-min-height: $size;
+        -fx-max-height: $size;
+        -fx-cursor: hand;
 
-.jfx-tool-bar .jfx-decorator-button .svg {
-    -fx-fill: -monet-on-primary-container;
-}
+        & .svg {
+            -fx-fill: -monet-on-primary-container;
+        }
+    }
 
-.jfx-tool-bar Label {
-    -fx-text-fill: -monet-on-surface;
-}
+    & Label {
+        -fx-text-fill: -monet-on-surface;
+    }
 
-.jfx-tool-bar.gray-background Label {
-    -fx-text-fill: BLACK;
-}
+    &.gray-background Label {
+        -fx-text-fill: BLACK;
+    }
 
-.jfx-tool-bar .jfx-options-burger {
-    -fx-padding: 22px;
-}
+    & .jfx-options-burger {
+        -fx-padding: 22px;
 
-.jfx-tool-bar .jfx-options-burger StackPane {
-    -fx-pref-width: 4px;
-}
+        & StackPane {
+            -fx-pref-width: 4px;
+        }
+    }
 
-.jfx-tool-bar .jfx-rippler {
-    -fx-text-fill: -monet-on-surface;
-}
+    & .jfx-rippler {
+        -fx-text-fill: -monet-on-surface;
+    }
 
-.jfx-tool-bar-second {
-    -fx-pref-height: 42px;
-    -fx-padding: 2px;
-    -fx-background-color: -monet-primary-container;
-    -fx-alignment: CENTER-LEFT;
-    -fx-spacing: 8;
-}
+    &-second {
+        -fx-pref-height: 42px;
+        -fx-padding: 2px;
+        -fx-background-color: -monet-primary-container;
+        -fx-alignment: CENTER-LEFT;
+        -fx-spacing: 8;
 
-.jfx-tool-bar-second .label {
-    -fx-text-fill: -monet-on-primary-container;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
+        & .label {
+            -fx-text-fill: -monet-on-primary-container;
+            -fx-font-size: 16px;
+            -fx-font-weight: bold;
+        }
 
-.jfx-tool-bar-second .jfx-rippler {
-    -jfx-rippler-fill: -monet-on-surface;
-}
+        & .jfx-rippler {
+            -jfx-rippler-fill: -monet-on-surface;
+        }
+    }
 
-.jfx-tool-bar-button {
-    -fx-text-fill: -monet-on-surface;
-    -fx-toggle-icon4-size: 37px;
-    -fx-pref-height: -fx-toggle-icon4-size;
-    -fx-max-height: -fx-toggle-icon4-size;
-    -fx-min-height: -fx-toggle-icon4-size;
-    -fx-background-radius: 5px;
-    -fx-background-color: transparent;
-    -jfx-toggle-color: -monet-on-surface;
-    -jfx-untoggle-color: transparent;
-}
+    &-button {
+        $size: 37px;
+        -fx-text-fill: -monet-on-surface;
+        -fx-max-height: $size;
+        -fx-min-height: $size;
+        -fx-background-radius: 5px;
+        -fx-background-color: transparent;
+        -jfx-toggle-color: -monet-on-surface;
+        -jfx-untoggle-color: transparent;
 
-.jfx-tool-bar-button .icon {
-    -fx-fill: #CCCC33;
-    -fx-padding: 10px;
+        & .icon {
+            -fx-fill: #CCCC33;
+            -fx-padding: 10px;
+        }
+    }
 }
 
 .jfx-decorator-button {
@@ -681,16 +682,16 @@
     -fx-background-radius: 5px;
     -fx-max-height: 40px;
     -fx-background-color: transparent;
-}
 
-.jfx-decorator-button .icon {
-    -fx-fill: #CCCC33;
-    -fx-padding: 0;
-}
+    & .icon {
+        -fx-fill: #CCCC33;
+        -fx-padding: 0;
+    }
 
-.jfx-decorator-button .jfx-rippler {
-    -jfx-mask-type: CIRCLE;
-    -fx-padding: 0;
+    & .jfx-rippler {
+        -jfx-mask-type: CIRCLE;
+        -fx-padding: 0;
+    }
 }
 
 /*******************************************************************************
@@ -1035,58 +1036,51 @@
 *                                                                              *
 *******************************************************************************/
 
-.jfx-toggle-button,
-.jfx-toggle-button:armed,
-.jfx-toggle-button:hover,
-.jfx-toggle-button:focused,
-.jfx-toggle-button:selected,
-.jfx-toggle-button:focused:selected {
-    -fx-background-color: transparent;
-    -fx-background-radius: 3px;
-    -fx-background-insets: 0;
+.jfx-toggle-button {
+    &, &:armed, &:hover, &:focused, &:selected, &:focused:selected {
+        -fx-background-color: transparent;
+        -fx-background-radius: 3px;
+        -fx-background-insets: 0;
 
-    -jfx-toggle-color: -monet-primary;
-    -jfx-toggle-line-color: -monet-primary-container;
-    -jfx-untoggle-color: -monet-outline;
-    -jfx-untoggle-line-color: -monet-surface-container-highest;
-    -jfx-size: 10px;
+        -jfx-toggle-color: -monet-primary;
+        -jfx-toggle-line-color: -monet-primary-container;
+        -jfx-untoggle-color: -monet-outline;
+        -jfx-untoggle-line-color: -monet-surface-container-highest;
+        -jfx-size: 10px;
+    }
+
+    & Line {
+        -fx-stroke: -jfx-untoggle-line-color;
+    }
+
+    & Circle{
+        -fx-fill: -jfx-untoggle-color;
+    }
+
+    & .jfx-rippler {
+        -jfx-rippler-fill: -jfx-untoggle-line-color;
+    }
+
+    &:selected {
+        & Line {
+            -fx-stroke: -jfx-toggle-line-color;
+        }
+
+        & Circle{
+            -fx-fill: -jfx-toggle-color;
+        }
+
+        & .jfx-rippler {
+            -jfx-rippler-fill: -jfx-toggle-line-color;
+        }
+    }
 }
-
-
-.jfx-toggle-button Line {
-    -fx-stroke: -jfx-untoggle-line-color;
-}
-.jfx-toggle-button:selected Line{
-    -fx-stroke: -jfx-toggle-line-color;
-}
-
-.jfx-toggle-button Circle{
-    -fx-fill: -jfx-untoggle-color;
-}
-
-.jfx-toggle-button:selected Circle{
-    -fx-fill: -jfx-toggle-color;
-}
-
-.jfx-toggle-button .jfx-rippler {
-    -jfx-rippler-fill: -jfx-untoggle-line-color;
-}
-
-.jfx-toggle-button:selected .jfx-rippler {
-    -jfx-rippler-fill: -jfx-toggle-line-color;
-}
-
 
 .toggle-label {
     -fx-font-size: 14px;
 }
 
 /* unused */
-.toggle-icon1 .icon {
-    -fx-fill: #4285F4;
-    -fx-padding: 20px;
-}
-
 .toggle-icon1 {
     -fx-pref-width: 80px;
     -fx-background-radius: 80px;
@@ -1094,11 +1088,16 @@
     -fx-background-color: transparent;
     -jfx-toggle-color: #4285F44C;
     -jfx-untoggle-color: transparent;
-}
 
-.toggle-icon1 .jfx-rippler {
-    -jfx-rippler-fill: #4285F44C;
-    -jfx-mask-type: CIRCLE;
+    & .icon {
+        -fx-fill: #4285F4;
+        -fx-padding: 20px;
+    }
+
+    & .jfx-rippler {
+        -jfx-rippler-fill: #4285F44C;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 .toggle-icon2, .toggle-icon3, .jfx-decorator-button {
@@ -1109,104 +1108,98 @@
 }
 
 /* unused */
-.toggle-icon2 .icon {
-    -fx-fill: RED;
-}
+.toggle-icon2 {
+    & .icon {
+        -fx-fill: RED;
+    }
 
-.toggle-icon2 .jfx-rippler {
-    -jfx-rippler-fill: RED;
-    -jfx-mask-type: CIRCLE;
+    & .jfx-rippler {
+        -jfx-rippler-fill: RED;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 /* unused */
 .toggle-icon3 {
-    -fx-toggle-icon4-size: 35px;
-    -fx-pref-width: -fx-toggle-icon4-size;
-    -fx-max-width: -fx-toggle-icon4-size;
-    -fx-min-width: -fx-toggle-icon4-size;
-    -fx-pref-height: -fx-toggle-icon4-size;
-    -fx-max-height: -fx-toggle-icon4-size;
-    -fx-min-height: -fx-toggle-icon4-size;
+    $size: 35px;
+    -fx-max-width: $size;
+    -fx-min-width: $size;
+    -fx-max-height: $size;
+    -fx-min-height: $size;
     -fx-background-radius: 50px;
     -fx-background-color: transparent;
     -jfx-toggle-color: white;
     -jfx-untoggle-color: transparent;
-}
 
-.toggle-icon3 .icon {
-    -fx-fill: #CCCC33;
-    -fx-padding: 10px;
-}
+    & .icon {
+        -fx-fill: #CCCC33;
+        -fx-padding: 10px;
+    }
 
-.toggle-icon3 .jfx-rippler {
-    -jfx-rippler-fill: white;
-    -jfx-mask-type: CIRCLE;
+    & .jfx-rippler {
+        -jfx-rippler-fill: white;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 /* used */
 .toggle-icon4 {
-    -fx-toggle-icon4-size: 30px;
-    -fx-pref-width: -fx-toggle-icon4-size;
-    -fx-max-width: -fx-toggle-icon4-size;
-    -fx-min-width: -fx-toggle-icon4-size;
-    -fx-pref-height: -fx-toggle-icon4-size;
-    -fx-max-height: -fx-toggle-icon4-size;
-    -fx-min-height: -fx-toggle-icon4-size;
+    $size: 30px;
+    -fx-max-width: $size;
+    -fx-min-width: $size;
+    -fx-max-height: $size;
+    -fx-min-height: $size;
     -fx-background-radius: 50px;
     -fx-background-color: transparent;
     -jfx-toggle-color: -monet-primary;
     -jfx-untoggle-color: transparent;
-}
 
-.toggle-icon4 .icon {
-    -fx-fill: #CCCC33;
-    -fx-padding: 10px;
-}
+    & .icon {
+        -fx-fill: #CCCC33;
+        -fx-padding: 10px;
+    }
 
-.toggle-icon4 .jfx-rippler {
-    -jfx-rippler-fill: -monet-primary;
-    -jfx-mask-type: CIRCLE;
+    & .jfx-rippler {
+        -jfx-rippler-fill: -monet-primary;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 .toggle-icon-tiny {
-    -fx-toggle-icon-tiny-size: 15px;
-    -fx-pref-width: -fx-toggle-icon-tiny-size;
-    -fx-max-width: -fx-toggle-icon-tiny-size;
-    -fx-min-width: -fx-toggle-icon-tiny-size;
-    -fx-pref-height: -fx-toggle-icon-tiny-size;
-    -fx-max-height: -fx-toggle-icon-tiny-size;
-    -fx-min-height: -fx-toggle-icon-tiny-size;
+    $size: 15px;
+    -fx-max-width: $size;
+    -fx-min-width: $size;
+    -fx-max-height: $size;
+    -fx-min-height: $size;
     -fx-background-radius: 25px;
     -fx-background-color: transparent;
     -jfx-toggle-color: -monet-primary;
     -jfx-untoggle-color: transparent;
-}
 
-.toggle-icon-tiny .icon {
-    -fx-fill: #CCCC33;
-    -fx-padding: 5px;
-}
+    & .icon {
+        -fx-fill: #CCCC33;
+        -fx-padding: 5px;
+    }
 
-.toggle-icon-tiny .jfx-rippler {
-    -jfx-rippler-fill: -monet-primary;
-    -jfx-mask-type: CIRCLE;
+    & .jfx-rippler {
+        -jfx-rippler-fill: -monet-primary;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 .announcement-close-button {
-    -fx-announcement-close-button-size: 20px;
-    -fx-pref-width: -fx-announcement-close-button-size;
-    -fx-max-width: -fx-announcement-close-button-size;
-    -fx-min-width: -fx-announcement-close-button-size;
-    -fx-pref-height: -fx-announcement-close-button-size;
-    -fx-max-height: -fx-announcement-close-button-size;
-    -fx-min-height: -fx-announcement-close-button-size;
+    $size: 20px;
+    -fx-max-width: $size;
+    -fx-min-width: $size;
+    -fx-max-height: $size;
+    -fx-min-height: $size;
     -fx-background-radius: 50px;
     -fx-background-color: transparent;
-}
 
-.announcement-close-button .jfx-rippler {
-    -jfx-rippler-fill: -monet-primary;
-    -jfx-mask-type: CIRCLE;
+    & .jfx-rippler {
+        -jfx-rippler-fill: -monet-primary;
+        -jfx-mask-type: CIRCLE;
+    }
 }
 
 .transparent {
@@ -1238,65 +1231,39 @@ $levels: (fatal, error, warn, info, debug, trace);
     }
 }
 
-.log-window-list-cell:selected {
-    -fx-background-color: -fixed-log-selected;
-}
-
 .log-window {
     -fx-background-color: -monet-surface-container;
-}
 
-.log-window .scroll-bar .thumb {
-    -fx-fill: -monet-surface-tint;
-}
+    & .scroll-bar .thumb {
+        -fx-fill: -monet-surface-tint;
+    }
 
-.log-window .jfx-button {
-    -fx-text-fill: -monet-on-surface;
-}
+    & .jfx-button {
+        -fx-text-fill: -monet-on-surface;
+    }
 
-.log-window-list-cell {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-border-width: 0 0 1 0;
-    -fx-border-color: -monet-outline-variant;
-}
+    &-list-cell {
+        -fx-text-fill: -fixed-log-text-fill;
+        -fx-border-width: 0 0 1px 0;
+        -fx-border-color: -monet-outline-variant;
 
-.log-window-list-cell:empty {
-    -fx-border-width: 0;
-}
+        &:selected {
+            -fx-background-color: -fixed-log-selected;
+        }
 
-.log-window-list-cell:fatal {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-fatal;
-}
+        &:empty {
+            -fx-border-width: 0;
+        }
 
-.log-window-list-cell:error {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-error;
-}
+        $log-window-list-cell-types: append($levels, selected);
 
-.log-window-list-cell:warn {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-warn;
-}
-
-.log-window-list-cell:info {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-info;
-}
-
-.log-window-list-cell:debug {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-debug;
-}
-
-.log-window-list-cell:trace {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-trace;
-}
-
-.log-window-list-cell:selected {
-    -fx-text-fill: -fixed-log-text-fill;
-    -fx-background-color: -fixed-log-selected;
+        @each $log-window-list-cell-type in $log-window-list-cell-types {
+            &:#{$log-window-list-cell-type} {
+                -fx-text-fill: -fixed-log-text-fill;
+                -fx-background-color: -fixed-log-#{$log-window-list-cell-type};
+            }
+        }
+    }
 }
 
 /*******************************************************************************
@@ -1305,90 +1272,37 @@ $levels: (fatal, error, warn, info, debug, trace);
 *                                                                              *
 *******************************************************************************/
 
-.jfx-spinner > .arc {
-    -fx-stroke-width: 3px;
-    -fx-fill: transparent;
-    -fx-stroke: -monet-primary-container;
-}
-
-.first-spinner {
-    -jfx-radius: 20;
-}
-
-.first-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
-
-.small-spinner {
-    -jfx-radius: 10;
-}
-
-.small-spinner > .arc {
-    -fx-stroke-width: 3px;
+.jfx-spinner {
+    & > .arc {
+        -fx-stroke-width: 3px;
+        -fx-fill: transparent;
+        -fx-stroke: -monet-primary-container;
+    }
 }
 
 .small-spinner-pane .jfx-spinner {
-    -jfx-radius: 10;
-}
+    -jfx-radius: 10px;
 
-.small-spinner-pane .jfx-spinner > .arc {
-    -fx-stroke-width: 3px;
-}
-
-.large-spinner-pane .jfx-spinner {
-    -jfx-radius: 20;
+    & > .arc {
+        -fx-stroke-width: 3px;
+    }
 }
 
 .large-spinner-pane .jfx-spinner {
+    -jfx-radius: 20px;
     -fx-stroke-width: 5px;
 }
 
-.second-spinner {
-    -jfx-radius: 30;
-}
+$spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, fifth: 60px, sixth: 70px, seventh: 80px);
 
-.second-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
+@each $name, $size in $spinners {
+    .#{$name}-spinner {
+        -jfx-radius: $size;
 
-.third-spinner {
-    -jfx-radius: 40;
-}
-
-.third-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
-
-.fourth-spinner {
-    -jfx-radius: 50;
-}
-
-.fourth-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
-
-.fifth-spinner {
-    -jfx-radius: 60;
-}
-
-.fifth-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
-
-.sixth-spinner {
-    -jfx-radius: 70;
-}
-
-.sixth-spinner > .arc {
-    -fx-stroke-width: 5px;
-}
-
-.seventh-spinner {
-    -jfx-radius: 80;
-}
-
-.seventh-spinner > .arc {
-    -fx-stroke-width: 5px;
+        & > .arc {
+            -fx-stroke-width: 5px;
+        }
+    }
 }
 
 /*******************************************************************************
@@ -1507,50 +1421,51 @@ $levels: (fatal, error, warn, info, debug, trace);
 .table-view {
     -fx-padding: 3px;
     -fx-background-color: -monet-surface-container-low;
+
+    & > .virtual-flow {
+        & > .clipped-container > .sheet > .table-row-cell:filled:selected {
+            -fx-background-color: -monet-secondary-container;
+        }
+
+        & > .scroll-bar {
+            -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
+
+            & .track {
+                -fx-fill: transparent;
+            }
+        }
+    }
+
+    & .column-header, & .filler {
+        -fx-background-color: transparent;
+    }
+
+    & .column-header-background {
+        -fx-background-color: -monet-surface-container-highest;
+    }
 }
 
 .table-view,
-.table-view .column-header,
 .table-view .filler,
+.table-view .column-header,
 .table-view .column-header-background,
 .table-row-cell {
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
 }
 
-.table-view .column-header,
-.table-view .filler {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: -monet-surface-container-highest;
-}
-
 .table-row-cell {
     -fx-background-color: -monet-surface-container;
     -fx-table-cell-border-color: -monet-surface-container-lowest;
-}
 
-.table-row-cell:odd {
-    -fx-background-color: -monet-surface-container-high;
+    &:odd {
+        -fx-background-color: -monet-surface-container-high;
+    }
 }
 
 .table-cell {
     -fx-background-color: transparent;
     -fx-text-fill: -monet-on-surface;
-}
-
-.table-view > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected {
-    -fx-background-color: -monet-secondary-container;
-}
-
-.table-view > .virtual-flow > .scroll-bar {
-    -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
-}
-
-.table-view > .virtual-flow > .scroll-bar .track {
-    -fx-fill: transparent;
 }
 
 /*******************************************************************************
@@ -1564,6 +1479,14 @@ $levels: (fatal, error, warn, info, debug, trace);
     -fx-background-radius: 6px;
     -fx-background-color: -monet-surface-container-low;
     -fx-border-radius: 6px;
+
+    & > .virtual-flow > .scroll-bar {
+        -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
+
+        & .track {
+            -fx-fill: transparent;
+        }
+    }
 }
 
 .tree-cell {
@@ -1572,26 +1495,18 @@ $levels: (fatal, error, warn, info, debug, trace);
     -fx-background-color: transparent;
     -fx-text-fill: -monet-on-surface;
     -fx-border-radius: 6px;
-}
 
-.tree-cell:focused {
-    -fx-background-color: -monet-secondary-container;
-}
+    &:focused {
+        -fx-background-color: -monet-secondary-container;
+    }
 
-.tree-cell .arrow {
-    -fx-background-color: -monet-on-surface;
-}
+    & .arrow {
+        -fx-background-color: -monet-on-surface;
+    }
 
-.tree-cell .jfx-rippler {
-    -jfx-rippler-disabled: true;
-}
-
-.tree-view > .virtual-flow > .scroll-bar {
-    -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
-}
-
-.tree-view > .virtual-flow > .scroll-bar .track {
-    -fx-fill: transparent;
+    & .jfx-rippler {
+        -jfx-rippler-disabled: true;
+    }
 }
 
 /*******************************************************************************
@@ -1602,14 +1517,14 @@ $levels: (fatal, error, warn, info, debug, trace);
 
 .jfx-decorator {
     -fx-decorator-color: -monet-primary-container;
-}
 
-.jfx-decorator-drawer {
-    -fx-background-color: #F4F4F480;
-}
+    &-drawer {
+        -fx-background-color: #F4F4F480;
+    }
 
-.jfx-decorator-title {
-    -fx-font-size: 14;
+    &-title {
+        -fx-font-size: 14;
+    }
 }
 
 .window {
@@ -1636,43 +1551,49 @@ $levels: (fatal, error, warn, info, debug, trace);
  *                                                                             *
  ******************************************************************************/
 
-.scroll-bar:vertical > .track-background, .scroll-bar:horizontal > .track-background {
-    -fx-background-color: #F1F1F1;
-    -fx-background-insets: 0;
+.scroll-bar {
+    &:vertical, &:horizontal {
+        & > .track-background {
+            -fx-background-color: #F1F1F1;
+            -fx-background-insets: 0;
+        }
+
+        & .thumb {
+            -fx-background-color: #BCBCBC;
+            -fx-background-insets: 0;
+            -fx-background-radius: 1px;
+        }
+    }
+
+    & > .increment-button, & > .decrement-button {
+        -fx-padding: 5px 2px 5px 2px;
+    }
+
+    &, &:hover {
+        & > .increment-button, & > .decrement-button {
+            -fx-background-color: transparent;
+        }
+    }
+
+    & > .increment-button > .increment-arrow {
+        -fx-background-color: #969696;
+        -fx-shape: "M298 426h428l-214 214z";
+    }
+
+    & > .decrement-button > .decrement-arrow {
+        -fx-background-color: #969696;
+        -fx-shape: "M298 598l214-214 214 214h-428z";
+    }
 }
 
-.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
-    -fx-background-color: #BCBCBC;
-    -fx-background-insets: 0;
-    -fx-background-radius: 1px;
-}
+.jfx-combo-box {
+    & .scroll-bar {
+        -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-.scroll-bar > .increment-button, .scroll-bar > .decrement-button {
-    -fx-padding: 5px 2px 5px 2px;
-}
-
-.scroll-bar > .increment-button, .scroll-bar > .decrement-button, .scroll-bar:hover > .increment-button, .scroll-bar:hover > .decrement-button {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar > .increment-button > .increment-arrow, .scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-background-color: #969696;
-}
-
-.scroll-bar > .increment-button > .increment-arrow {
-    -fx-shape: "M298 426h428l-214 214z";
-}
-
-.scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-shape: "M298 598l214-214 214 214h-428z";
-}
-
-.jfx-combo-box .scroll-bar {
-    -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
-}
-
-.jfx-combo-box .scroll-bar .track {
-    -fx-fill: transparent;
+        & .track {
+            -fx-fill: transparent;
+        }
+    }
 }
 
 /*******************************************************************************
@@ -1722,22 +1643,26 @@ $levels: (fatal, error, warn, info, debug, trace);
 
 .error-icon {
     -fx-fill: -monet-error;
-    -fx-font-size: 1.0em;
+    -fx-font-size: 1em;
 }
 
-.jfx-text-field:error, .jfx-password-field:error, .jfx-text-area:error, .jfx-combo-box:error {
-    -jfx-focus-color: -monet-error;
-    -jfx-unfocus-color: -monet-error;
+.jfx-text-field, .jfx-password-field, .jfx-text-area, .jfx-combo-box {
+    &:error {
+        -jfx-focus-color: -monet-error;
+        -jfx-unfocus-color: -monet-error;
+    }
 }
 
-.jfx-text-field .error-label, .jfx-password-field .error-label, .jfx-text-area .error-label {
-    -fx-text-fill: -monet-error;
-    -fx-font-size: 0.75em;
-}
+.jfx-text-field, .jfx-password-field, .jfx-text-area {
+    & .error-label {
+        -fx-text-fill: -monet-error;
+        -fx-font-size: 0.75em;
+    }
 
-.jfx-text-field .error-icon, .jfx-password-field .error-icon, .jfx-text-area .error-icon {
-    -fx-fill: -monet-error;
-    -fx-font-size: 1.0em;
+    & .error-icon {
+        -fx-fill: -monet-error;
+        -fx-font-size: 1em;
+    }
 }
 
 .fit-width {
