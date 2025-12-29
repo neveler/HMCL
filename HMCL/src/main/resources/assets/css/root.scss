@@ -143,8 +143,8 @@
 
 .radio-button-title-label {
     -fx-font-size: 16px;
-    -fx-padding: 14.0 0.0 -20.0 0.0;
-    -fx-text-fill: rgba(0.0, 0.0, 0.0, 0.87);
+    -fx-padding: 14px 0 -20px 0;
+    -fx-text-fill: #000000DE;
 }
 
 .announcement {
@@ -412,7 +412,7 @@
     -fx-alignment: center;
     -fx-pref-width: 180px;
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+    -fx-effect: dropshadow(gaussian, #00000042, 10, 0.12, -1, 2);
 }
 
 /*******************************************************************************
@@ -429,7 +429,7 @@
 .launch-pane > .jfx-button > StackPane > .jfx-rippler {
     -jfx-rippler-fill: -monet-on-primary-container;
     -jfx-mask-type: CIRCLE;
-    -fx-padding: 0.0;
+    -fx-padding: 0;
 }
 
 .launch-pane > .jfx-button, .jfx-button * {
@@ -489,19 +489,19 @@
 .dialog-trigger {
     -fx-background-color: WHITE;
     -jfx-button-type: RAISED;
-    -fx-font-size: 14.0px;
+    -fx-font-size: 14px;
 }
 
 .jfx-dialog-layout {
-    -fx-padding: 24.0px 24.0px 16.0px 24.0px;
+    -fx-padding: 24px 24px 16px 24px;
     -fx-background-color: -monet-surface-container-high;
     -fx-text-fill: -monet-on-surface;
 }
 
 .jfx-layout-heading {
-    -fx-font-size: 20.0px;
+    -fx-font-size: 20px;
     -fx-alignment: center-left;
-    -fx-padding: 5.0 0.0 5.0 0.0;
+    -fx-padding: 5px 0 5px 0;
 }
 
 .jfx-layout-body {
@@ -515,7 +515,7 @@
 
 .jfx-layout-actions {
     -fx-pref-width: 400;
-    -fx-padding: 10.0px 0.0 0.0 0.0;
+    -fx-padding: 10px 0 0 0;
     -fx-alignment: center-right;
 }
 
@@ -556,7 +556,7 @@
 }
 
 .popup-list-view {
-    -fx-pref-width: 150.0px;
+    -fx-pref-width: 150px;
 }
 
 .jfx-snackbar-content {
@@ -579,7 +579,7 @@
 
 .icon {
     -fx-fill: #FE774D;
-    -fx-padding: 10.0;
+    -fx-padding: 10px;
     -fx-cursor: hand;
 }
 
@@ -590,8 +590,8 @@
  ******************************************************************************/
 
 .jfx-tool-bar {
-    -fx-font-size: 13.0;
-    -fx-pref-width: 100.0%;
+    -fx-font-size: 13px;
+    -fx-pref-width: 100%;
     -fx-min-height: 40px;
     -fx-max-height: 40px;
     -fx-pref-height: 40px;
@@ -607,7 +607,7 @@
 
 /*.jfx-tool-bar HBox {*/
 /*    -fx-alignment: center-left;*/
-/*    -fx-padding: 0.0 5.0;*/
+/*    -fx-padding: 0 5px;*/
 /*}*/
 
 .jfx-tool-bar .jfx-decorator-button {
@@ -645,8 +645,8 @@
 }
 
 .jfx-tool-bar-second {
-    -fx-pref-height: 42;
-    -fx-padding: 2 2 2 2;
+    -fx-pref-height: 42px;
+    -fx-padding: 2px;
     -fx-background-color: -monet-primary-container;
     -fx-alignment: CENTER-LEFT;
     -fx-spacing: 8;
@@ -654,7 +654,7 @@
 
 .jfx-tool-bar-second .label {
     -fx-text-fill: -monet-on-primary-container;
-    -fx-font-size: 16;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
 
@@ -675,8 +675,8 @@
 }
 
 .jfx-tool-bar-button .icon {
-    -fx-fill: rgb(204.0, 204.0, 51.0);
-    -fx-padding: 10.0;
+    -fx-fill: #CCCC33;
+    -fx-padding: 10px;
 }
 
 .jfx-decorator-button {
@@ -687,13 +687,13 @@
 }
 
 .jfx-decorator-button .icon {
-    -fx-fill: rgb(204.0, 204.0, 51.0);
-    -fx-padding: 0.0;
+    -fx-fill: #CCCC33;
+    -fx-padding: 0;
 }
 
 .jfx-decorator-button .jfx-rippler {
     -jfx-mask-type: CIRCLE;
-    -fx-padding: 0.0;
+    -fx-padding: 0;
 }
 
 /*******************************************************************************
@@ -765,7 +765,7 @@
 .jfx-button .jfx-rippler {
     -jfx-rippler-fill: -monet-on-surface;
     -jfx-mask-type: CIRCLE;
-    -fx-padding: 0.0;
+    -fx-padding: 0;
 }
 
 .jfx-button-raised {
@@ -775,7 +775,7 @@
 .jfx-button-raised .jfx-rippler {
     -jfx-rippler-fill: -monet-on-primary;
     -jfx-mask-type: CIRCLE;
-    -fx-padding: 0.0;
+    -fx-padding: 0;
 }
 
 .jfx-button-raised, .jfx-button-raised * {
@@ -828,7 +828,7 @@
 *******************************************************************************/
 
 .jfx-progress-bar {
-    -fx-pref-width: 500.0;
+    -fx-pref-width: 500px;
 }
 
 .jfx-progress-bar > .track, .jfx-progress-bar > .bar {
@@ -859,7 +859,7 @@
     -fx-alignment: top-left;
     -fx-max-width: 1000000000;
     -jfx-focus-color: -monet-primary;
-    -fx-padding: 8;
+    -fx-padding: 8px;
     -jfx-unfocus-color: transparent;
 }
 
@@ -892,10 +892,10 @@
 /*}*/
 
 .jfx-list-view {
-    -fx-background-insets: 0.0;
-    -jfx-cell-horizontal-margin: 0.0;
-    -jfx-cell-vertical-margin: 5.0;
-    -jfx-vertical-gap: 10.0;
+    -fx-background-insets: 0;
+    -jfx-cell-horizontal-margin: 0;
+    -jfx-cell-vertical-margin: 5px;
+    -jfx-vertical-gap: 10px;
     -jfx-expanded: false;
     -fx-background-color: transparent;
 }
@@ -909,41 +909,41 @@
 }
 
 .jfx-list-view-float {
-    -fx-background-insets: 0.0;
-    -jfx-cell-horizontal-margin: 0.0;
-    -jfx-cell-vertical-margin: 5.0;
-    -jfx-vertical-gap: 10.0;
+    -fx-background-insets: 0;
+    -jfx-cell-horizontal-margin: 0;
+    -jfx-cell-vertical-margin: 5px;
+    -jfx-vertical-gap: 10px;
     -jfx-expanded: false;
     -fx-background-color: transparent;
 }
 
 .options-list {
     -fx-background-color: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.06, -0.5, 1);
+    -fx-effect: dropshadow(gaussian, #00000042, 5, 0.06, -0.5, 1);
 }
 
 .depth-0 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0), 0, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, #00000000, 0, 0, 0, 0);
 }
 
 .depth-1 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+    -fx-effect: dropshadow(gaussian, #00000042, 10, 0.12, -1, 2);
 }
 
 .depth-2 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 15, 0.16, 0, 4);
+    -fx-effect: dropshadow(gaussian, #00000042, 15, 0.16, 0, 4);
 }
 
 .depth-3 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 20, 0.19, 0, 6);
+    -fx-effect: dropshadow(gaussian, #00000042, 20, 0.19, 0, 6);
 }
 
 .depth-4 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 25, 0.25, 0, 8);
+    -fx-effect: dropshadow(gaussian, #00000042, 25, 0.25, 0, 8);
 }
 
 .depth-5 {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 30, 0.3, 0, 10);
+    -fx-effect: dropshadow(gaussian, #00000042, 30, 0.3, 0, 10);
 }
 
 .padding-8 {
@@ -952,10 +952,10 @@
 
 .card {
     -fx-background-color: -monet-surface-container-low-transparent-80;
-    -fx-background-radius: 4;
+    -fx-background-radius: 4px;
     -fx-padding: 8px;
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+    -fx-effect: dropshadow(gaussian, #00000042, 10, 0.12, -1, 2);
 }
 
 .card-non-transparent {
@@ -963,7 +963,7 @@
     -fx-background-radius: 4;
     -fx-padding: 8px;
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.06, -0.5, 1);
+    -fx-effect: dropshadow(gaussian, #00000042, 5, 0.06, -0.5, 1);
 }
 
 .card:selected {
@@ -971,13 +971,13 @@
 }
 
 .card-list {
-    -fx-padding: 10;
-    -fx-spacing: 10;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
 }
 
 .md-list-cell {
     -fx-border-color: -monet-outline-variant;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 1px 0;
 }
 
 .md-list-cell:selected {
@@ -995,9 +995,9 @@
 .options-list-item {
     -fx-background-color: -monet-surface;
     -fx-border-color: -monet-outline-variant;
-    -fx-border-width: 1 0 0 0;
-    -fx-padding: 10 16 10 16;
-    -fx-font-size: 12;
+    -fx-border-width: 1px 0 0 0;
+    -fx-padding: 10px 16px 10px 16px;
+    -fx-font-size: 12px;
 }
 
 .options-list-item .svg {
@@ -1022,16 +1022,16 @@
 }
 
 .options-list-item:first {
-    -fx-background-radius: 4 4 0 0;
+    -fx-background-radius: 4px 4px 0 0;
     -fx-border-width: 0;
 }
 
 .options-list-item:last {
-    -fx-background-radius: 0 0 4 4;
+    -fx-background-radius: 0 0 4px 4px;
 }
 
 .options-list-item:first:last {
-    -fx-background-radius: 4 4 4 4;
+    -fx-background-radius: 4px;
     -fx-border-width: 0;
 }
 
@@ -1049,13 +1049,13 @@
 .jfx-toggle-button:focused:selected {
     -fx-background-color: transparent;
     -fx-background-radius: 3px;
-    -fx-background-insets: 0px;
+    -fx-background-insets: 0;
 
     -jfx-toggle-color: -monet-primary;
     -jfx-toggle-line-color: -monet-primary-container;
     -jfx-untoggle-color: -monet-outline;
     -jfx-untoggle-line-color: -monet-surface-container-highest;
-    -jfx-size: 10;
+    -jfx-size: 10px;
 }
 
 
@@ -1084,13 +1084,13 @@
 
 
 .toggle-label {
-    -fx-font-size: 14.0px;
+    -fx-font-size: 14px;
 }
 
 /* unused */
 .toggle-icon1 .icon {
     -fx-fill: #4285F4;
-    -fx-padding: 20.0;
+    -fx-padding: 20px;
 }
 
 .toggle-icon1 {
@@ -1098,12 +1098,12 @@
     -fx-background-radius: 80px;
     -fx-pref-height: 80px;
     -fx-background-color: transparent;
-    -jfx-toggle-color: rgba(66.0, 133.0, 244.0, 0.29885056614875793);
+    -jfx-toggle-color: #4285F44C;
     -jfx-untoggle-color: transparent;
 }
 
 .toggle-icon1 .jfx-rippler {
-    -jfx-rippler-fill: rgba(66.0, 133.0, 244.0, 0.29885056614875793);
+    -jfx-rippler-fill: #4285F44C;
     -jfx-mask-type: CIRCLE;
 }
 
@@ -1140,8 +1140,8 @@
 }
 
 .toggle-icon3 .icon {
-    -fx-fill: rgb(204.0, 204.0, 51.0);
-    -fx-padding: 10.0;
+    -fx-fill: #CCCC33;
+    -fx-padding: 10px;
 }
 
 .toggle-icon3 .jfx-rippler {
@@ -1165,8 +1165,8 @@
 }
 
 .toggle-icon4 .icon {
-    -fx-fill: rgb(204.0, 204.0, 51.0);
-    -fx-padding: 10.0;
+    -fx-fill: #CCCC33;
+    -fx-padding: 10px;
 }
 
 .toggle-icon4 .jfx-rippler {
@@ -1189,8 +1189,8 @@
 }
 
 .toggle-icon-tiny .icon {
-    -fx-fill: rgb(204.0, 204.0, 51.0);
-    -fx-padding: 5.0;
+    -fx-fill: #CCCC33;
+    -fx-padding: 5px;
 }
 
 .toggle-icon-tiny .jfx-rippler {
@@ -1225,40 +1225,23 @@
 *                                                                              *
 *******************************************************************************/
 
+$levels: (fatal, error, warn, info, debug, trace);
+
 .log-toggle {
     -fx-border: 1px;
     -fx-border-color: -fixed-log-toggle-unselected;
     -fx-text-fill: -fixed-log-toggle-unselected;
-}
 
-.log-toggle:selected {
-    -fx-border: 1px;
-    -fx-border-color: -fixed-log-toggle-selected;
-    -fx-text-fill: -fixed-log-toggle-selected;
-}
+    &:selected {
+        -fx-border-color: -fixed-log-toggle-selected;
+        -fx-text-fill: -fixed-log-toggle-selected;
+    }
 
-.log-toggle.fatal {
-    -fx-background-color: -fixed-log-fatal;
-}
-
-.log-toggle.error {
-    -fx-background-color: -fixed-log-error;
-}
-
-.log-toggle.warn {
-    -fx-background-color: -fixed-log-warn;
-}
-
-.log-toggle.info {
-    -fx-background-color: -fixed-log-info;
-}
-
-.log-toggle.debug {
-    -fx-background-color: -fixed-log-debug;
-}
-
-.log-toggle.trace {
-    -fx-background-color: -fixed-log-trace;
+    @each $level in $levels {
+        &.#{$level} {
+            -fx-background-color: unquote("-fixed-log-#{$level}");
+        }
+    }
 }
 
 .log-window-list-cell:selected {
@@ -1329,7 +1312,7 @@
 *******************************************************************************/
 
 .jfx-spinner > .arc {
-    -fx-stroke-width: 3.0;
+    -fx-stroke-width: 3px;
     -fx-fill: transparent;
     -fx-stroke: -monet-primary-container;
 }
@@ -1339,7 +1322,7 @@
 }
 
 .first-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .small-spinner {
@@ -1347,7 +1330,7 @@
 }
 
 .small-spinner > .arc {
-    -fx-stroke-width: 3.0;
+    -fx-stroke-width: 3px;
 }
 
 .small-spinner-pane .jfx-spinner {
@@ -1355,7 +1338,7 @@
 }
 
 .small-spinner-pane .jfx-spinner > .arc {
-    -fx-stroke-width: 3.0;
+    -fx-stroke-width: 3px;
 }
 
 .large-spinner-pane .jfx-spinner {
@@ -1363,7 +1346,7 @@
 }
 
 .large-spinner-pane .jfx-spinner {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .second-spinner {
@@ -1371,7 +1354,7 @@
 }
 
 .second-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .third-spinner {
@@ -1379,7 +1362,7 @@
 }
 
 .third-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .fourth-spinner {
@@ -1387,7 +1370,7 @@
 }
 
 .fourth-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .fifth-spinner {
@@ -1395,7 +1378,7 @@
 }
 
 .fifth-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .sixth-spinner {
@@ -1403,7 +1386,7 @@
 }
 
 .sixth-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 .seventh-spinner {
@@ -1411,7 +1394,7 @@
 }
 
 .seventh-spinner > .arc {
-    -fx-stroke-width: 5.0;
+    -fx-stroke-width: 5px;
 }
 
 /*******************************************************************************
@@ -1424,7 +1407,7 @@
     -jfx-focus-color: transparent;
     -jfx-unfocus-color: transparent;
     -fx-background-color: -monet-surface-container-highest;
-    -fx-padding: 4;
+    -fx-padding: 4px;
     -fx-max-width: 1000000000;
 }
 
@@ -1443,7 +1426,7 @@
 .combo-box-popup .list-view .jfx-list-cell {
     -fx-background-color: -monet-surface-container;
     -fx-text-fill: -monet-on-surface;
-    -fx-background-insets: 0.0;
+    -fx-background-insets: 0;
 }
 
 .combo-box-popup .list-view .list-cell:odd:selected > .jfx-rippler > StackPane,
@@ -1477,7 +1460,7 @@
 .jfx-color-picker {
     -fx-background-color: transparent;
     -fx-background-radius: 3px;
-    -fx-background-insets: 0px;
+    -fx-background-insets: 0;
     -fx-min-height: 25px;
 }
 
@@ -1501,7 +1484,7 @@
     -fx-background-color: transparent;
     -fx-font-weight: BOLD;
     -fx-alignment: top-left;
-    -fx-max-width: 300;
+    -fx-max-width: 300px;
 }
 
 .custom-color-dialog .tab .tab-label {
@@ -1525,7 +1508,7 @@
 /* WE DEFINITELY NEED JFX TABLE-VIEW */
 
 .table-view {
-    -fx-padding: 3;
+    -fx-padding: 3px;
     -fx-background-color: -monet-surface-container-low;
 }
 
@@ -1534,8 +1517,8 @@
 .table-view .filler,
 .table-view .column-header-background,
 .table-row-cell {
-    -fx-background-radius: 6;
-    -fx-border-radius: 6;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
 }
 
 .table-view .column-header,
@@ -1580,18 +1563,18 @@
  ******************************************************************************/
 
 .tree-view {
-    -fx-padding: 5;
-    -fx-background-radius: 6;
+    -fx-padding: 5px;
+    -fx-background-radius: 6px;
     -fx-background-color: -monet-surface-container-low;
-    -fx-border-radius: 6;
+    -fx-border-radius: 6px;
 }
 
 .tree-cell {
-    -fx-padding: 5;
-    -fx-background-radius: 6;
+    -fx-padding: 5px;
+    -fx-background-radius: 6px;
     -fx-background-color: transparent;
     -fx-text-fill: -monet-on-surface;
-    -fx-border-radius: 6;
+    -fx-border-radius: 6px;
 }
 
 .tree-cell:focused {
@@ -1625,7 +1608,7 @@
 }
 
 .jfx-decorator-drawer {
-    -fx-background-color: rgba(244, 244, 244, 0.5);
+    -fx-background-color: #F4F4F480;
 }
 
 .jfx-decorator-title {
@@ -1658,17 +1641,17 @@
 
 .scroll-bar:vertical > .track-background, .scroll-bar:horizontal > .track-background {
     -fx-background-color: #F1F1F1;
-    -fx-background-insets: 0.0;
+    -fx-background-insets: 0;
 }
 
 .scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
     -fx-background-color: #BCBCBC;
-    -fx-background-insets: 0.0;
-    -fx-background-radius: 1.0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1px;
 }
 
 .scroll-bar > .increment-button, .scroll-bar > .decrement-button {
-    -fx-padding: 5 2 5 2;
+    -fx-padding: 5px 2px 5px 2px;
 }
 
 .scroll-bar > .increment-button, .scroll-bar > .decrement-button, .scroll-bar:hover > .increment-button, .scroll-bar:hover > .decrement-button {
@@ -1676,7 +1659,7 @@
 }
 
 .scroll-bar > .increment-button > .increment-arrow, .scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-background-color: rgb(150.0, 150.0, 150.0);
+    -fx-background-color: #969696;
 }
 
 .scroll-bar > .increment-button > .increment-arrow {
@@ -1702,30 +1685,32 @@
  ******************************************************************************/
 
 .scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-snap-to-pixel: false;
-}
+    -fx: {
+        background-color: transparent;
+        background-insets: 0;
+        padding: 0;
+        snap-to-pixel: false;
+    }
 
-.scroll-pane:focused {
-    -fx-background-insets: 0;
-}
+    &:focused {
+        -fx-background-insets: 0;
+    }
 
-.scroll-pane .corner {
-    -fx-background-insets: 0;
-}
+    & .corner {
+        -fx-background-insets: 0;
+    }
 
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
+    & > .viewport {
+        -fx-background-color: transparent;
+    }
 
-.scroll-pane .scroll-bar {
-    -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
-}
+    & .scroll-bar {
+        -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-.scroll-pane .scroll-bar .track {
-    -fx-fill: transparent;
+        & .track {
+            -fx-fill: transparent;
+        }
+    }
 }
 
 /*******************************************************************************
@@ -1771,31 +1756,18 @@
 *******************************************************************************/
 
 .html {
-    -fx-font-size: 16;
-}
+  -fx-font-size: 16px;
 
-.html-hyperlink {
+  &-hyperlink {
     -fx-fill: -monet-primary;
-}
+  }
 
-.html-h1 {
-    -fx-font-size: 22;
-}
+  &-h1 { -fx-font-size: 22px; }
+  &-h2 { -fx-font-size: 20px; }
+  &-h3 { -fx-font-size: 18px; }
 
-.html-h2 {
-    -fx-font-size: 20;
-}
-
-.html-h3 {
-    -fx-font-size: 18;
-}
-
-.html-bold {
-    -fx-font-weight: bold;
-}
-
-.html-italic {
-    -fx-font-style: italic;
+  &-bold { -fx-font-weight: bold; }
+  &-italic { -fx-font-style: italic; }
 }
 
 /*******************************************************************************
@@ -1807,8 +1779,8 @@
 .tooltip {
     -fx-text-fill: -monet-inverse-on-surface;
     -fx-background-color: -monet-inverse-surface;
-}
 
-.tooltip .text {
-    -fx-fill: -monet-inverse-on-surface;
+    & .text {
+        -fx-fill: -monet-inverse-on-surface;
+    }
 }
