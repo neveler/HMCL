@@ -1,3 +1,5 @@
+import com.sass_lang.embedded_protocol.OutputStyle
+import io.freefair.gradle.plugins.sass.SassCompile
 import org.jackhuang.hmcl.gradle.ci.GitHubActionUtils
 import org.jackhuang.hmcl.gradle.ci.JenkinsUtils
 import org.jackhuang.hmcl.gradle.l10n.CheckTranslations
@@ -17,6 +19,7 @@ import java.util.zip.ZipFile
 
 plugins {
     alias(libs.plugins.shadow)
+    id("io.freefair.sass-base") version "9.1.0"
 }
 
 val projectConfig = PropertiesUtils.load(rootProject.file("config/project.properties").toPath())
@@ -143,6 +146,18 @@ tasks.compileJava {
     options.compilerArgs.addAll(addOpens.map { "--add-exports=$it=ALL-UNNAMED" })
 }
 
+val compileScss by tasks.registering(SassCompile::class) {
+    group = "build"
+    description = "Compile SCSS files to CSS"
+    source = fileTree("src/main/resources/assets/css") {
+        include("**/*.scss")
+    }
+    sourceMapEnabled = false;
+    outputStyle = OutputStyle.COMPRESSED
+    destinationDir = layout.buildDirectory.dir("resources/main/assets/css").get().asFile
+    outputs.dir(destinationDir)
+}
+
 val hmclProperties = buildList {
     add("hmcl.version" to project.version.toString())
     add("hmcl.add-opens" to addOpens.joinToString(" "))
@@ -225,6 +240,7 @@ tasks.shadowJar {
 }
 
 tasks.processResources {
+    dependsOn(compileScss)
     dependsOn(createPropertiesFile)
     dependsOn(upsideDownTranslate)
     dependsOn(createLocaleNamesResourceBundle)
