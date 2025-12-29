@@ -1,0 +1,22 @@
+.hint {
+    -fx-hyperlink-fill: -monet-primary;
+}
+
+.two-line-list-item {
+    -fixed-warning-tag-background: #F1AEB5;
+}
+
+.log-window {
+    -fixed-log: {
+        toggle-selected: #000000;
+        toggle-unselected: #6C757D;
+        text-fill: #000000;
+        trace: #EEE9E0;
+        debug: #EEE9E0;
+        info: #FFFFFF;
+        warn: #FFEECC;
+        error: #FFCCBB;
+        fatal: #F7A699;
+        selected: #C4C4C4;
+    }
+}
