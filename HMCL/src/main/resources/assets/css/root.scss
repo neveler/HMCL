@@ -1239,7 +1239,7 @@ $levels: (fatal, error, warn, info, debug, trace);
 
     @each $level in $levels {
         &.#{$level} {
-            -fx-background-color: unquote("-fixed-log-#{$level}");
+            -fx-background-color: -fixed-log-#{$level};
         }
     }
 }
