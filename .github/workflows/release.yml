@@ -26,11 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     name: check-update-${{ matrix.channel }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          fetch-tags: true
       - name: Mock
         run: |
           echo "continue=true" >> $GITHUB_ENV
@@ -47,7 +42,7 @@ jobs:
       - name: Publish a winget manifest from GitHub Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        run: .github/scripts/publish_winget_manifest.sh
+        run: sudo .github/scripts/publish_winget_manifest.sh
         env:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-identifier-gh }}
           PACKAGE_NAME: ${{ matrix.winget-name }}
