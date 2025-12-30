@@ -42,7 +42,7 @@ jobs:
       - name: Publish a winget manifest from GitHub Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        run: sudo .github/scripts/publish_winget_manifest.sh
+        run: .github/scripts/publish_winget_manifest.sh
         env:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-identifier-gh }}
           PACKAGE_NAME: ${{ matrix.winget-name }}
