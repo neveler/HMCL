@@ -1,0 +1,53 @@
+$levels: (fatal, error, warn, info, debug, trace);
+
+.log-toggle {
+    -fx-border: 1px;
+    -fx-border-color: -fixed-log-toggle-unselected;
+    -fx-text-fill: -fixed-log-toggle-unselected;
+
+    &:selected {
+        -fx-border-color: -fixed-log-toggle-selected;
+        -fx-text-fill: -fixed-log-toggle-selected;
+    }
+
+    @each $level in $levels {
+        &.#{$level} {
+            -fx-background-color: -fixed-log-#{$level};
+        }
+    }
+}
+
+.log-window {
+    -fx-background-color: -monet-surface-container;
+
+    .scroll-bar .thumb {
+        -fx-fill: -monet-surface-tint;
+    }
+
+    .jfx-button {
+        -fx-text-fill: -monet-on-surface;
+    }
+
+    &-list-cell {
+        -fx-text-fill: -fixed-log-text-fill;
+        -fx-border-width: 0 0 1px 0;
+        -fx-border-color: -monet-outline-variant;
+
+        &:selected {
+            -fx-background-color: -fixed-log-selected;
+        }
+
+        &:empty {
+            -fx-border-width: 0;
+        }
+
+        $log-window-list-cell-types: list.append($levels, selected);
+
+        @each $log-window-list-cell-type in $log-window-list-cell-types {
+            &:#{$log-window-list-cell-type} {
+                -fx-text-fill: -fixed-log-text-fill;
+                -fx-background-color: -fixed-log-#{$log-window-list-cell-type};
+            }
+        }
+    }
+}

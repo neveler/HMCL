@@ -1,0 +1,26 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-snap-to-pixel: false;
+
+    &:focused {
+        -fx-background-insets: 0;
+    }
+
+    .corner {
+        -fx-background-insets: 0;
+    }
+
+    > .viewport {
+        -fx-background-color: transparent;
+    }
+
+    .scroll-bar {
+        -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
+
+        .track {
+            -fx-fill: transparent;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.scroll-bar {
+    &:vertical, &:horizontal {
+        > .track-background {
+            -fx-background-color: #F1F1F1;
+            -fx-background-insets: 0;
+        }
+
+        .thumb {
+            -fx-background-color: #BCBCBC;
+            -fx-background-insets: 0;
+            -fx-background-radius: 1px;
+        }
+    }
+
+    > .increment-button, > .decrement-button {
+        -fx-padding: 5px 2px 5px 2px;
+    }
+
+    &, &:hover {
+        > .increment-button, > .decrement-button {
+            -fx-background-color: transparent;
+        }
+    }
+
+    > .increment-button > .increment-arrow {
+        -fx-background-color: #969696;
+        -fx-shape: "M298 426h428l-214 214z";
+    }
+
+    > .decrement-button > .decrement-arrow {
+        -fx-background-color: #969696;
+        -fx-shape: "M298 598l214-214 214 214h-428z";
+    }
+}
+
+.jfx-combo-box {
+    .scroll-bar {
+        -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
+
+        .track {
+            -fx-fill: transparent;
+        }
+    }
+}
