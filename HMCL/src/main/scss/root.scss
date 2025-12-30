@@ -888,11 +888,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 /*}*/
 
 .jfx-list-view {
+    /* unused */
+    // -jfx-cell-horizontal-margin: 0;
+    // -jfx-cell-vertical-margin: 5;
+    // -jfx-vertical-gap: 10;
+    // -jfx-expanded: false;
     -fx-background-insets: 0;
-    -jfx-cell-horizontal-margin: 0;
-    -jfx-cell-vertical-margin: 5px;
-    -jfx-vertical-gap: 10px;
-    -jfx-expanded: false;
     -fx-background-color: transparent;
 }
 
@@ -905,11 +906,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .jfx-list-view-float {
+    /* unused */
+    // -jfx-cell-horizontal-margin: 0;
+    // -jfx-cell-vertical-margin: 5;
+    // -jfx-vertical-gap: 10;
+    // -jfx-expanded: false;
     -fx-background-insets: 0;
-    -jfx-cell-horizontal-margin: 0;
-    -jfx-cell-vertical-margin: 5px;
-    -jfx-vertical-gap: 10px;
-    -jfx-expanded: false;
     -fx-background-color: transparent;
 }
 
@@ -1222,7 +1224,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .small-spinner-pane .jfx-spinner {
-    -jfx-radius: 10px;
+    -jfx-radius: 10;
 
     > .arc {
         -fx-stroke-width: 3px;
@@ -1230,7 +1232,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .large-spinner-pane .jfx-spinner {
-    -jfx-radius: 20px;
+    -jfx-radius: 20;
     -fx-stroke-width: 5px;
 }
 
