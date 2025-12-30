@@ -44,11 +44,7 @@ jobs:
       - name: Publish a winget manifest from GitHub Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        uses: michidk/run-komac@v2
-        with:
-          args: |
-            --version
-            .github/scripts/publish_winget_manifest.sh
+        run: .github/scripts/publish_winget_manifest.sh
         env:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-identifier-gh }}
           PACKAGE_NAME: ${{ matrix.winget-name }}
@@ -57,15 +53,10 @@ jobs:
           PACKAGE_INSTALLER_URL: https://github.com/${{ github.repository }}/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
           PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
           KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.KOMAC_TOKEN }}
       - name: Publish a winget manifest from CNB Releases
         if: ${{ env.continue == 'true' && matrix.channel == 'dev' }}
         continue-on-error: true
-        uses: michidk/run-komac@v2
-        with:
-          args: |
-            --version
-            .github/scripts/publish_winget_manifest.sh
+        run: .github/scripts/publish_winget_manifest.sh
         env:
           PACKAGE_IDENTIFIER: ${{ matrix.winget-identifier-cnb }}
           PACKAGE_NAME: ${{ matrix.winget-name }}
@@ -74,4 +65,3 @@ jobs:
           PACKAGE_INSTALLER_URL: https://cnb.cool/HMCL-dev/HMCL/-/releases/download/v${{ env.HMCL_VERSION }}/HMCL-${{ env.HMCL_VERSION }}.exe
           PACKAGE_INSTALLER_SHA256: ${{ env.EXE_SHA256 }}
           KOMAC_TOKEN: ${{ secrets.KOMAC_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.KOMAC_TOKEN }}
