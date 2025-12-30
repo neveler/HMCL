@@ -147,12 +147,14 @@ tasks.compileJava {
 }
 
 val compileScss by tasks.registering(SassCompile::class) {
-    source = fileTree("src/main/scss") {
+    val sourceDir = file("src/main/scss")
+    source = fileTree(sourceDir) {
         include("**/*.scss")
     }
-    sourceMapEnabled = false;
+    sourceMapEnabled = false
     outputStyle = OutputStyle.COMPRESSED
     destinationDir = layout.buildDirectory.dir("resources/main/assets/css").get().asFile
+    inputs.dir(sourceDir)
     outputs.dir(destinationDir)
 }
 
