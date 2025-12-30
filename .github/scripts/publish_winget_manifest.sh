@@ -57,8 +57,7 @@ EOF
 echo "$PACKAGE_IDENTIFIER.installer.yaml"
 cat $PACKAGE_IDENTIFIER/$PACKAGE_IDENTIFIER.installer.yaml
 
-curl -i -H "Authorization: token $KOMAC_TOKEN" https://api.github.com/user
-
-komac submit ./$PACKAGE_IDENTIFIER --submit --open-pr --token $KOMAC_TOKEN
+# komac submit ./$PACKAGE_IDENTIFIER --submit --open-pr --token $KOMAC_TOKEN
+komac update --identifier "$PACKAGE_IDENTIFIER" --version "$PACKAGE_VERSION" --urls "$PACKAGE_INSTALLER_URL" --submit --token "$KOMAC_TOKEN"
 
 rm -rf $PACKAGE_IDENTIFIER
