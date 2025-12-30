@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@use "sass:list";
+
 @mixin disabled-opacity {
     &:disabled {
         -fx-opacity: 0.4;
@@ -61,7 +63,7 @@
     -fx-border-radius: 5px;
     -fx-padding: 6px;
 
-    & .hyperlink {
+    .hyperlink {
         -fx-fill: -monet-primary;
         -fx-text-fill: -monet-primary;
     }
@@ -70,7 +72,7 @@
         -fx-background-color: -monet-primary-fixed-dim;
         -fx-border-color: -monet-outline;
 
-        & Text, & .svg {
+        Text, .svg {
             -fx-fill: -monet-on-primary-fixed;
         }
     }
@@ -79,7 +81,7 @@
         -fx-background-color: #d1e7dd;
         -fx-border-color: -monet-outline;
 
-        & Text, & .svg {
+        Text, .svg {
             -fx-fill: #0a3622;
         }
     }
@@ -88,7 +90,7 @@
         -fx-background-color: -monet-error-container;
         -fx-border-color: -monet-outline;
 
-        & Text, & .svg {
+        Text, .svg {
             -fx-fill: -monet-on-error-container;
         }
     }
@@ -97,11 +99,11 @@
         -fx-background-color: -monet-tertiary-fixed-dim;
         -fx-border-color: -monet-outline;
 
-        & Text, & .svg {
+        Text, .svg {
             -fx-fill: -monet-on-tertiary-fixed;
         }
 
-        & .hyperlink {
+        .hyperlink {
             -fx-fill: -fx-hyperlink-fill;
             -fx-text-fill: -fx-hyperlink-fill;
         }
@@ -138,18 +140,18 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 .announcement {
     -fx-padding: 16px;
 
-    & .title {
+    .title {
         -fx-text-fill: -monet-on-surface;
         -fx-font-size: 14px;
         -fx-font-weight: BOLD;
     }
 
-    & Text {
+    Text {
         -fx-fill: -monet-on-surface;
         -fx-font-size: 13px;
     }
 
-    & .hyperlink {
+    .hyperlink {
         -fx-fill: -monet-primary;
         -fx-font-size: 13px;
     }
@@ -162,20 +164,20 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 .advanced-list-item .rippler-container {
     -jfx-rippler-fill: -monet-on-secondary-container;
 
-    & > .container {
+    > .container {
         -fx-padding: 10px 16px 10px 16px;
         -fx-background-color: transparent;
 
-        & > .two-line-list-item {
+        > .two-line-list-item {
             -fx-alignment: center-left;
             -fx-padding: 0 0 0 10px;
 
-            & > .first-line > .title {
+            > .first-line > .title {
                 -fx-font-size: 13px;
                 -fx-text-alignment: justify;
             }
 
-            & > HBox > .subtitle {
+            > HBox > .subtitle {
                 -fx-font-size: 10px;
                 -fx-text-alignment: justify;
             }
@@ -184,16 +186,16 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .advanced-list-item:selected {
-    & > .rippler-container > .container {
+    > .rippler-container > .container {
         -fx-background-color: -monet-secondary-container-transparent-50;
 
-        & > .two-line-list-item > .first-line > .title {
+        > .two-line-list-item > .first-line > .title {
             -fx-text-fill: -monet-on-secondary-container;
             -fx-font-weight: bold;
         }
     }
 
-    & .svg {
+    .svg {
         -fx-fill: -monet-on-secondary-container;
     }
 }
@@ -203,31 +205,31 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .profile-list-item {
-    & > .rippler-container > BorderPane {
+    > .rippler-container > BorderPane {
         -fx-padding: 8px 0 8px 16px;
 
-        & > .two-line-list-item {
-            & > .first-line > .title {
+        > .two-line-list-item {
+            > .first-line > .title {
                 -fx-font-size: 13px;
             }
 
-            & > HBox > .subtitle {
+            > HBox > .subtitle {
                 -fx-font-size: 10px;
             }
         }
     }
 
     &:selected {
-        & > .rippler-container > BorderPane {
+        > .rippler-container > BorderPane {
             -fx-background-color: -monet-secondary-container-transparent-50;
 
-            & > .two-line-list-item > .first-line > .title {
+            > .two-line-list-item > .first-line > .title {
                 -fx-text-fill: -monet-on-secondary-container;
                 -fx-font-weight: bold;
             }
         }
 
-        & .svg {
+        .svg {
             -fx-fill: -monet-on-secondary-container;
         }
     }
@@ -244,11 +246,11 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -fx-font-size: 12px;
     -fx-padding: 8px 16px 8px 16px;
 
-    & Text {
+    Text {
         -fx-fill: -monet-on-surface;
     }
 
-    & Rectangle {
+    Rectangle {
         -fx-fill: -monet-on-surface-variant;
     }
 }
@@ -268,7 +270,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 .iconed-item {
     -jfx-rippler-fill: -monet-secondary-container;
     
-    & .iconed-item-container {
+    .iconed-item-container {
         -fx-padding: 10px 16px 10px 16px;
         -fx-spacing: 10px;
         -fx-font-size: 14px;
@@ -279,7 +281,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 .iconed-menu-item {
     -jfx-rippler-fill: -monet-secondary-container;
 
-    & .iconed-item-container {
+    .iconed-item-container {
         -fx-padding: 8px 16px 8px 16px;
         -fx-spacing: 10px;
         -fx-font-size: 12px;
@@ -300,14 +302,14 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 }
 
 .two-line-list-item {
-    & > .first-line {
-        & > .title {
+    > .first-line {
+        > .title {
             -fx-text-fill: -monet-on-surface;
             -fx-font-size: 15px;
             -fx-padding: 0 8px 0 0;
         }
 
-        & > .tag {
+        > .tag {
             -fx-text-fill: -monet-on-secondary-container;
             -fx-background-color: -monet-secondary-container;
             -fx-padding: 2px;
@@ -315,7 +317,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
             -fx-font-size: 12px;
         }
 
-        & > .tag-warning {
+        > .tag-warning {
             -fx-text-fill: -monet-on-error-container;
             -fx-background-color: -fixed-warning-tag-background;
             -fx-padding: 2px;
@@ -324,25 +326,25 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         }
     }
 
-    & > HBox > .subtitle {
+    > HBox > .subtitle {
         -fx-text-fill: -monet-on-surface-variant;
         -fx-font-weight: normal;
         -fx-font-size: 12px;
     }
 
-    & > .second-line > .subtitle Text {
+    > .second-line > .subtitle Text {
         -fx-fill: -monet-on-surface-variant;
     }
 }
 
 .two-line-item-second-large {
-    & > .first-line > .title, .two-line-item-second-large-title {
+    > .first-line > .title, .two-line-item-second-large-title {
         -fx-text-fill: -monet-on-surface-variant;
         -fx-font-weight: normal;
         -fx-font-size: 12px;
     }
 
-    & > HBox > .subtitle {
+    > HBox > .subtitle {
         -fx-text-fill: -monet-on-surface;
         -fx-font-size: 15px;
     }
@@ -355,12 +357,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 .game-crash-window {
     -fx-background-color: -monet-surface-container;
 
-    & .crash-reason-text-flow {
-        & Text {
+    .crash-reason-text-flow {
+        Text {
             -fx-fill: -monet-on-surface;
         }
 
-        & .hyperlink {
+        .hyperlink {
             -fx-fill: -monet-primary;
         }
     }
@@ -374,13 +376,13 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -fx-background-color: -monet-inverse-surface-transparent-80;
     -fx-background-radius: 2px;
 
-    & > HBox > .two-line-list-item {
-        & > .first-line > .title, & > HBox > .subtitle {
+    > HBox > .two-line-list-item {
+        > .first-line > .title, > HBox > .subtitle {
             -fx-text-fill: -monet-inverse-on-surface;
         }
     }
 
-    & .svg {
+    .svg {
         -fx-fill: -monet-inverse-on-surface;
     }
 }
@@ -401,7 +403,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
             -fx-pref-width: 80px;
         }
 
-        & > .installer-item-status {
+        > .installer-item-status {
             -fx-max-width: infinity;
         }
     }
@@ -423,27 +425,27 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
  ******************************************************************************/
 
 .launch-pane {
-    & > .jfx-button {
+    > .jfx-button {
         -fx-background-color: -monet-primary-container;
         -fx-cursor: hand;
 
-        & > StackPane > .jfx-rippler {
+        > StackPane > .jfx-rippler {
             -jfx-rippler-fill: -monet-on-primary-container;
             -jfx-mask-type: CIRCLE;
             -fx-padding: 0;
         }
 
-        &, & * {
+        &, * {
             -fx-text-fill: -monet-on-primary-container;
             -fx-font-size: 14px;
         }
     }
 
-    & .svg {
+    .svg {
         -fx-fill: -monet-on-primary-container;
     }
 
-    & > Rectangle {
+    > Rectangle {
         -fx-fill: -monet-primary-container;
     }
 }
@@ -508,7 +510,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -fx-pref-width: 400px;
     -fx-wrap-text: true;
 
-    & Text {
+    Text {
         -fx-fill: -monet-on-surface;
     }
 }
@@ -599,16 +601,16 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -fx-background-color: -monet-primary-container;
     }
 
-    & .jfx-decorator-title {
+    .jfx-decorator-title {
         -fx-font-weight: BOLD;
     }
 
-    // & HBox {
+    // HBox {
     //     -fx-alignment: center-left;
     //     -fx-padding: 0 5px;
     // }
 
-    & .jfx-decorator-button {
+    .jfx-decorator-button {
         $size: 40px;
         -fx-min-width: $size;
         -fx-max-width: $size;
@@ -616,12 +618,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -fx-max-height: $size;
         -fx-cursor: hand;
 
-        & .svg {
+        .svg {
             -fx-fill: -monet-on-primary-container;
         }
     }
 
-    & Label {
+    Label {
         -fx-text-fill: -monet-on-surface;
     }
 
@@ -629,15 +631,15 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -fx-text-fill: BLACK;
     }
 
-    & .jfx-options-burger {
+    .jfx-options-burger {
         -fx-padding: 22px;
 
-        & StackPane {
+        StackPane {
             -fx-pref-width: 4px;
         }
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -fx-text-fill: -monet-on-surface;
     }
 
@@ -648,13 +650,13 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -fx-alignment: center-left;
         -fx-spacing: 8px;
 
-        & .label {
+        .label {
             -fx-text-fill: -monet-on-primary-container;
             -fx-font-size: 16px;
             -fx-font-weight: bold;
         }
 
-        & .jfx-rippler {
+        .jfx-rippler {
             -jfx-rippler-fill: -monet-on-surface;
         }
     }
@@ -669,7 +671,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -jfx-toggle-color: -monet-on-surface;
         -jfx-untoggle-color: transparent;
 
-        & .icon {
+        .icon {
             -fx-fill: #CCCC33;
             -fx-padding: 10px;
         }
@@ -682,12 +684,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -fx-max-height: 40px;
     -fx-background-color: transparent;
 
-    & .icon {
+    .icon {
         -fx-fill: #CCCC33;
         -fx-padding: 0;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-mask-type: CIRCLE;
         -fx-padding: 0;
     }
@@ -1048,28 +1050,28 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
         -jfx-size: 10px;
     }
 
-    & Line {
+    Line {
         -fx-stroke: -jfx-untoggle-line-color;
     }
 
-    & Circle{
+    Circle{
         -fx-fill: -jfx-untoggle-color;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: -jfx-untoggle-line-color;
     }
 
     &:selected {
-        & Line {
+        Line {
             -fx-stroke: -jfx-toggle-line-color;
         }
 
-        & Circle{
+        Circle{
             -fx-fill: -jfx-toggle-color;
         }
 
-        & .jfx-rippler {
+        .jfx-rippler {
             -jfx-rippler-fill: -jfx-toggle-line-color;
         }
     }
@@ -1088,12 +1090,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -jfx-toggle-color: #4285F44C;
     -jfx-untoggle-color: transparent;
 
-    & .icon {
+    .icon {
         -fx-fill: #4285F4;
         -fx-padding: 20px;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: #4285F44C;
         -jfx-mask-type: CIRCLE;
     }
@@ -1108,11 +1110,11 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
 
 /* unused */
 .toggle-icon2 {
-    & .icon {
+    .icon {
         -fx-fill: RED;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: RED;
         -jfx-mask-type: CIRCLE;
     }
@@ -1130,12 +1132,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -jfx-toggle-color: white;
     -jfx-untoggle-color: transparent;
 
-    & .icon {
+    .icon {
         -fx-fill: #CCCC33;
         -fx-padding: 10px;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: white;
         -jfx-mask-type: CIRCLE;
     }
@@ -1153,12 +1155,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -jfx-toggle-color: -monet-primary;
     -jfx-untoggle-color: transparent;
 
-    & .icon {
+    .icon {
         -fx-fill: #CCCC33;
         -fx-padding: 10px;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: -monet-primary;
         -jfx-mask-type: CIRCLE;
     }
@@ -1175,12 +1177,12 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -jfx-toggle-color: -monet-primary;
     -jfx-untoggle-color: transparent;
 
-    & .icon {
+    .icon {
         -fx-fill: #CCCC33;
         -fx-padding: 5px;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: -monet-primary;
         -jfx-mask-type: CIRCLE;
     }
@@ -1195,7 +1197,7 @@ $memory-types: (used: -monet-primary, allocate: -monet-primary-transparent-50, t
     -fx-background-radius: 50px;
     -fx-background-color: transparent;
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-fill: -monet-primary;
         -jfx-mask-type: CIRCLE;
     }
@@ -1233,11 +1235,11 @@ $levels: (fatal, error, warn, info, debug, trace);
 .log-window {
     -fx-background-color: -monet-surface-container;
 
-    & .scroll-bar .thumb {
+    .scroll-bar .thumb {
         -fx-fill: -monet-surface-tint;
     }
 
-    & .jfx-button {
+    .jfx-button {
         -fx-text-fill: -monet-on-surface;
     }
 
@@ -1254,7 +1256,7 @@ $levels: (fatal, error, warn, info, debug, trace);
             -fx-border-width: 0;
         }
 
-        $log-window-list-cell-types: append($levels, selected);
+        $log-window-list-cell-types: list.append($levels, selected);
 
         @each $log-window-list-cell-type in $log-window-list-cell-types {
             &:#{$log-window-list-cell-type} {
@@ -1272,7 +1274,7 @@ $levels: (fatal, error, warn, info, debug, trace);
 *******************************************************************************/
 
 .jfx-spinner {
-    & > .arc {
+    > .arc {
         -fx-stroke-width: 3px;
         -fx-fill: transparent;
         -fx-stroke: -monet-primary-container;
@@ -1282,7 +1284,7 @@ $levels: (fatal, error, warn, info, debug, trace);
 .small-spinner-pane .jfx-spinner {
     -jfx-radius: 10px;
 
-    & > .arc {
+    > .arc {
         -fx-stroke-width: 3px;
     }
 }
@@ -1298,7 +1300,7 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     .#{$name}-spinner {
         -jfx-radius: $size;
 
-        & > .arc {
+        > .arc {
             -fx-stroke-width: 5px;
         }
     }
@@ -1317,11 +1319,11 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     -fx-padding: 4px;
     -fx-max-width: 1000000000px;
 
-    & .text {
+    .text {
         -fx-fill: -monet-on-surface;
     }
 
-    & .text-field {
+    .text-field {
         -fx-text-fill: -monet-on-surface;
     }
 
@@ -1329,7 +1331,7 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
         -jfx-focus-color: #D34336;
         -jfx-unfocus-color: #D34336;
 
-        & .text {
+        .text {
             -fx-fill: #D34336;
         }
     }
@@ -1338,17 +1340,17 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
 .combo-box-popup .list-view {
     -fx-background-color: -monet-surface-container;
 
-    & .jfx-list-cell {
+    .jfx-list-cell {
         -fx-background-color: -monet-surface-container;
         -fx-text-fill: -monet-on-surface;
         -fx-background-insets: 0;
 
-        // & .jfx-rippler {
+        // .jfx-rippler {
         //     -jfx-rippler-fill: -monet-primary-container;
         // }
     }
 
-    & .list-cell:odd, & .list-cell:even {
+    .list-cell:odd, .list-cell:even {
         &:selected > .jfx-rippler > StackPane {
         -fx-background-color: -monet-secondary-container;
         -fx-text-fill: -monet-on-secondary-container;
@@ -1375,18 +1377,18 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     -fx-background-color: -monet-surface;
 
     &-region {
-        & .jfx-button {
+        .jfx-button {
             -fx-text-fill: -monet-on-surface;
         }
     }
 }
 
 .custom-color-dialog {
-    & .jfx-tab-pane {
+    .jfx-tab-pane {
         -fx-background-color: -monet-surface;
     }
 
-    & .custom-color-field {
+    .custom-color-field {
         -jfx-unfocus-color: -monet-on-surface;
         -fx-background-color: transparent;
         -fx-font-weight: BOLD;
@@ -1394,17 +1396,17 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
         -fx-max-width: 300px;
     }
 
-    & .tab {
-        & .tab-label {
+    .tab {
+        .tab-label {
             -fx-text-fill: -monet-on-surface;
         }
 
-        & .jfx-rippler {
+        .jfx-rippler {
             -jfx-rippler-fill: -monet-on-surface;
         }
     }
 
-    & .tab-selected-line {
+    .tab-selected-line {
         -fx-background-color: -monet-on-surface;
     }
 }
@@ -1421,25 +1423,25 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     -fx-padding: 3px;
     -fx-background-color: -monet-surface-container-low;
 
-    & > .virtual-flow {
-        & > .clipped-container > .sheet > .table-row-cell:filled:selected {
+    > .virtual-flow {
+        > .clipped-container > .sheet > .table-row-cell:filled:selected {
             -fx-background-color: -monet-secondary-container;
         }
 
-        & > .scroll-bar {
+        > .scroll-bar {
             -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-            & .track {
+            .track {
                 -fx-fill: transparent;
             }
         }
     }
 
-    & .column-header, & .filler {
+    .column-header, .filler {
         -fx-background-color: transparent;
     }
 
-    & .column-header-background {
+    .column-header-background {
         -fx-background-color: -monet-surface-container-highest;
     }
 }
@@ -1479,10 +1481,10 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     -fx-background-color: -monet-surface-container-low;
     -fx-border-radius: 6px;
 
-    & > .virtual-flow > .scroll-bar {
+    > .virtual-flow > .scroll-bar {
         -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-        & .track {
+        .track {
             -fx-fill: transparent;
         }
     }
@@ -1499,11 +1501,11 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
         -fx-background-color: -monet-secondary-container;
     }
 
-    & .arrow {
+    .arrow {
         -fx-background-color: -monet-on-surface;
     }
 
-    & .jfx-rippler {
+    .jfx-rippler {
         -jfx-rippler-disabled: true;
     }
 }
@@ -1552,44 +1554,44 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
 
 .scroll-bar {
     &:vertical, &:horizontal {
-        & > .track-background {
+        > .track-background {
             -fx-background-color: #F1F1F1;
             -fx-background-insets: 0;
         }
 
-        & .thumb {
+        .thumb {
             -fx-background-color: #BCBCBC;
             -fx-background-insets: 0;
             -fx-background-radius: 1px;
         }
     }
 
-    & > .increment-button, & > .decrement-button {
+    > .increment-button, > .decrement-button {
         -fx-padding: 5px 2px 5px 2px;
     }
 
     &, &:hover {
-        & > .increment-button, & > .decrement-button {
+        > .increment-button, > .decrement-button {
             -fx-background-color: transparent;
         }
     }
 
-    & > .increment-button > .increment-arrow {
+    > .increment-button > .increment-arrow {
         -fx-background-color: #969696;
         -fx-shape: "M298 426h428l-214 214z";
     }
 
-    & > .decrement-button > .decrement-arrow {
+    > .decrement-button > .decrement-arrow {
         -fx-background-color: #969696;
         -fx-shape: "M298 598l214-214 214 214h-428z";
     }
 }
 
 .jfx-combo-box {
-    & .scroll-bar {
+    .scroll-bar {
         -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-        & .track {
+        .track {
             -fx-fill: transparent;
         }
     }
@@ -1611,18 +1613,18 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
         -fx-background-insets: 0;
     }
 
-    & .corner {
+    .corner {
         -fx-background-insets: 0;
     }
 
-    & > .viewport {
+    > .viewport {
         -fx-background-color: transparent;
     }
 
-    & .scroll-bar {
+    .scroll-bar {
         -fx-skin: "org.jackhuang.hmcl.ui.construct.FloatScrollBarSkin";
 
-        & .track {
+        .track {
             -fx-fill: transparent;
         }
     }
@@ -1653,12 +1655,12 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
 }
 
 .jfx-text-field, .jfx-password-field, .jfx-text-area {
-    & .error-label {
+    .error-label {
         -fx-text-fill: -monet-error;
         -fx-font-size: 0.75em;
     }
 
-    & .error-icon {
+    .error-icon {
         -fx-fill: -monet-error;
         -fx-font-size: 1em;
     }
@@ -1707,7 +1709,7 @@ $spinners: (small: 10px, first: 20px, second: 30px, third: 40px, fourth: 50px, f
     -fx-text-fill: -monet-inverse-on-surface;
     -fx-background-color: -monet-inverse-surface;
 
-    & .text {
+    .text {
         -fx-fill: -monet-inverse-on-surface;
     }
 }
