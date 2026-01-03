@@ -1,3 +1,5 @@
+import com.sass_lang.embedded_protocol.OutputStyle
+import io.freefair.gradle.plugins.sass.SassCompile
 import org.jackhuang.hmcl.gradle.ci.GitHubActionUtils
 import org.jackhuang.hmcl.gradle.ci.JenkinsUtils
 import org.jackhuang.hmcl.gradle.l10n.CheckTranslations
@@ -17,6 +19,7 @@ import java.util.zip.ZipFile
 
 plugins {
     alias(libs.plugins.shadow)
+    alias(libs.plugins.sass)
 }
 
 val projectConfig = PropertiesUtils.load(rootProject.file("config/project.properties").toPath())
@@ -139,7 +142,65 @@ val addOpens = listOf(
     "jdk.attach/sun.tools.attach",
 )
 
+val sassCLI: Provider<String> = providers.gradleProperty("sassCLI")
+    .orElse(providers.environmentVariable("SASS_CLI"))
+    .orElse("")
+
+val useSassCLI: Provider<Boolean> = sassCLI.map { it.isNotBlank() }
+
+val buildCssBySassCLI by tasks.registering(Exec::class) {
+    val sourceDir = file("src/main/scss")
+    val destinationDir = file("src/main/resources/assets/css")
+    commandLine(sassCLI.get(), "$sourceDir:$destinationDir", "--style=compressed", "--no-source-map")
+    inputs.dir(sourceDir)
+    outputs.dir(destinationDir)
+}
+
+val buildCssByEmbeddedSass by tasks.registering(SassCompile::class) {
+    val sourceDir = file("src/main/scss")
+    source = fileTree(sourceDir) {
+        include("**/*.scss")
+    }
+    sourceMapEnabled = false
+    outputStyle = OutputStyle.COMPRESSED
+    destinationDir = file("src/main/resources/assets/css")
+    inputs.dir(sourceDir)
+    outputs.dir(destinationDir)
+}
+
+val buildCss by tasks.registering {
+    val scssDir = file("src/main/scss")
+    val sha256File = file("$scssDir/_sha256.scss")
+
+    val historySha256FileContent = if (sha256File.exists()) sha256File.readText() else null
+
+    val digest = MessageDigest.getInstance("SHA-256")
+    val files = scssDir.walkTopDown()
+        .filter { it.isFile && it.relativeTo(scssDir).path != "_sha256.scss" }
+        .sortedBy { it.relativeTo(scssDir).path }
+
+    for (file in files) {
+        digest.update(file.relativeTo(scssDir).path.toByteArray())
+        digest.update(file.readBytes())
+    }
+
+    val hashBytes = digest.digest()
+    val hashHex = BigInteger(1, hashBytes).toString(16).padStart(64, '0')
+    val sha256FileContent = "@mixin sha256 {/*!sha256:$hashHex*/}"
+
+    if (historySha256FileContent == null || sha256FileContent != historySha256FileContent) {
+        sha256File.writeText(sha256FileContent)
+
+        if (useSassCLI.orNull == true) {
+            dependsOn(buildCssBySassCLI)
+        } else {
+            dependsOn(buildCssByEmbeddedSass)
+        }
+    }
+}
+
 tasks.compileJava {
+    dependsOn(buildCss)
     options.compilerArgs.addAll(addOpens.map { "--add-exports=$it=ALL-UNNAMED" })
 }
 
@@ -225,6 +286,7 @@ tasks.shadowJar {
 }
 
 tasks.processResources {
+    dependsOn(buildCss)
     dependsOn(createPropertiesFile)
     dependsOn(upsideDownTranslate)
     dependsOn(createLocaleNamesResourceBundle)
