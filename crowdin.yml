@@ -1,3 +1,4 @@
 files:
   - source: /HMCL/src/main/resources/assets/lang/I18N.properties
     translation: /HMCL/src/main/resources/assets/lang/I18N_%locale_with_underscore%.properties
+    multilingual: 1
