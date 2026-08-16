@@ -33,18 +33,9 @@ jobs:
       - name: Check Codes
         run: ./gradlew checkstyle checkTranslations --no-daemon --parallel --stacktrace
       - if: failure()
-        name: Set up reviewdog
-        uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252 # v1.4.0
-      - if: failure()
-        name: Run reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          find . -path "*/build/reports/checkstyle/main.xml" | while read -r xml_file; do
-            if [ -s "$xml_file" ]; then
-              echo "Processing $xml_file..."
-              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle" -reporter=github-pr-${{ github.event_name == 'pull_request' && 'review' || 'check' }}
-            else
-              echo "Skipping empty or missing report: $xml_file"
-            fi
-          done
+        name: Upload checkstyle reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-reports
+          path: '**/build/reports/checkstyle/main.xml'
+          if-no-files-found: ignore

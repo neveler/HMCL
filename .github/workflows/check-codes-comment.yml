@@ -1,0 +1,42 @@
+name: Check Codes Comment
+
+on:
+  workflow_run:
+    workflows: ["Check Codes"]
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'failure'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: checkstyle-reports
+          path: ${{ runner.temp }}/checkstyle-reports
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up reviewdog
+        uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252 # v1.4.0
+      - name: Run reviewdog
+        run: |
+          find . -path "*/build/reports/checkstyle/main.xml" | while read -r xml_file; do
+            if [ -s "$xml_file" ]; then
+              echo "Processing $xml_file..."
+              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle" -reporter=github-pr-review
+            else
+              echo "Skipping empty or missing report: $xml_file"
+            fi
+          done
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ runner.temp }}/checkstyle-reports
