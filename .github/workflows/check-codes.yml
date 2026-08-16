@@ -27,16 +27,19 @@ jobs:
           cache-cleanup: never
       - name: Check Codes
         run: ./gradlew checkstyle checkTranslations --no-daemon --parallel --stacktrace
-      - name: Set up reviewdog
+      - if: failure()
+        name: Set up reviewdog
         uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252 # v1.4.0
-      - name: Run reviewdog
+      - if: failure()
+        name: Run reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           find . -path "*/build/reports/checkstyle/main.xml" | while read -r xml_file; do
-            reviewdog -f=checkstyle \
-                      -name="checkstyle" \
-                      -reporter=github-pr-check \
-                      -filter-mode=added \
-                      "$xml_file"
+            if [ -s "$xml_file" ]; then
+              echo "Processing $xml_file..."
+              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle"
+            else
+              echo "Skipping empty or missing report: $xml_file"
+            fi
           done
