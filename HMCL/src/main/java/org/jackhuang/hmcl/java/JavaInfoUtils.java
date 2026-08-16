@@ -9,6 +9,7 @@ import org.jackhuang.hmcl.util.platform.OperatingSystem;
 import org.jackhuang.hmcl.util.platform.Platform;
 import org.jackhuang.hmcl.util.platform.SystemUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jackhuang.hmcl.download.DownloadProvider;
 
 import java.io.IOException;
 import java.nio.file.Path;
