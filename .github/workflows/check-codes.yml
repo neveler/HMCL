@@ -11,6 +11,7 @@ on:
       - '**.properties'
 
 permissions:
+  checks: write
   contents: read
   pull-requests: write
 
