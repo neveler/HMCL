@@ -43,7 +43,7 @@ jobs:
           find . -path "*/build/reports/checkstyle/main.xml" | while read -r xml_file; do
             if [ -s "$xml_file" ]; then
               echo "Processing $xml_file..."
-              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle" -reporter=github-pr-check
+              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle" -reporter=github-pr-${{ github.event_name == 'pull_request' && 'review' || 'check' }}
             else
               echo "Skipping empty or missing report: $xml_file"
             fi
