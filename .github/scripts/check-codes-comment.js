@@ -2,6 +2,9 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = async ({ github, context, core }) => {
+    // debug
+    console.log(JSON.stringify(context.payload.workflow_run, undefined, 2));
+
     if (!fs.existsSync(process.env.COMMIT_SHA_PATH) || !fs.statSync(process.env.COMMIT_SHA_PATH).isFile()) {
         core.info("No commit sha file found.");
         return;
