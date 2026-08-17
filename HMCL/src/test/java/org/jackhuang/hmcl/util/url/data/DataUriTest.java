@@ -19,6 +19,7 @@ package org.jackhuang.hmcl.util.url.data;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
 import java.io.IOException;
 import java.net.URI;
 
