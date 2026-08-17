@@ -69,23 +69,20 @@ jobs:
             for (const report of ALL_REPORTS) {
               try {
                 const data = JSON.parse(report);
-                if (!data.diagnostics) continue;
 
-                for (const diagnostic of data.diagnostics) {
-                  const filePath = diagnostic.location?.path;
-                  const line = diagnostic.location?.range?.start?.line;
-                  const message = diagnostic.message;
-                  const severity = diagnostic.severity || 'INFO';
-                  const code = diagnostic.code?.value ? `[${diagnostic.code.value}] ` : '';
+                const filePath = data.location?.path;
+                const line = data.range?.start?.line;
+                const message = data.message;
+                const severity = data.severity || 'INFO';
+                const code = data.code?.value ? `[${diagnostic.code.value}] ` : '';
 
-                  if (filePath && line) {
-                    comments.push({
-                      path: filePath,
-                      line,
-                      side: 'RIGHT', 
-                      body: `**[${severity}]** ${code}${message}`
-                    });
-                  }
+                if (filePath && line) {
+                  comments.push({
+                    path: filePath,
+                    line,
+                    side: 'RIGHT', 
+                    body: `**[${severity}]** ${code}${message}`
+                  });
                 }
               } catch (e) {
                 console.error('Failed to parse line:', line, e);
