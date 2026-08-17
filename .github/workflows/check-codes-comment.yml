@@ -25,8 +25,93 @@ jobs:
           path: ${{ runner.temp }}/checkstyle-artifact
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate Comment
+      - name: Generate Review Comment
         uses: actions/github-script@v9
+        env:
+          COMMIT_SHA_PATH: ${{ runner.temp }}/checkstyle-artifact/COMMIT_SHA
+          REPORTS_PATH: ${{ runner.temp }}/checkstyle-artifact/ALL_REPORTS.jsonl
+          PULL_REQUEST_NUMBER_PATH: ${{ runner.temp }}/checkstyle-artifact/PULL_REQUEST_NUMBER
         with:
           script: |
-            console.log("TODO");
+            const fs = require('fs');
+            const path = require('path');
+
+            if (!fs.existsSync(process.env.COMMIT_SHA_PATH) || !fs.statSync(process.env.COMMIT_SHA_PATH).isFile()) {
+              console.log('No commit sha file found.');
+              return;
+            }
+
+            if (!fs.existsSync(process.env.PULL_REQUEST_NUMBER_PATH) || !fs.statSync(process.env.PULL_REQUEST_NUMBER_PATH).isFile()) {
+              console.log('No pull request number file found.');
+              return;
+            }
+
+            if (!fs.existsSync(process.env.REPORTS_PATH) || !fs.statSync(process.env.REPORTS_PATH).isFile()) {
+              console.log('No reports file found.');
+              return;
+            }
+
+            const COMMIT_SHA = fs.readFileSync(process.env.COMMIT_SHA_PATH, "utf8").trim();
+            if (!/^[0-9a-fA-F]{40}$/.test(COMMIT_SHA)) {
+              console.log('Parse COMMIT_SHA error.');
+              return;
+            }
+
+            const PULL_REQUEST_NUMBER = parseInt(fs.readFileSync(process.env.PULL_REQUEST_NUMBER_PATH, "utf8").trim(), 10);
+            if (isNaN(PULL_REQUEST_NUMBER)) {
+              console.log('Parse PULL_REQUEST_NUMBER error.');
+              return;
+            }
+
+            const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split('\n').filter(Boolean);
+
+            const comments = [];
+            for (const report of ALL_REPORTS) {
+              try {
+                const data = JSON.parse(report);
+                if (!data.diagnostics) continue;
+
+                for (const diagnostic of data.diagnostics) {
+                  const filePath = diagnostic.location?.path;
+                  const line = diagnostic.location?.range?.start?.line;
+                  const message = diagnostic.message;
+                  const severity = diagnostic.severity || 'INFO';
+                  const code = diagnostic.code?.value ? `[${diagnostic.code.value}] ` : '';
+
+                  if (filePath && line) {
+                    comments.push({
+                      path: filePath,
+                      line,
+                      side: 'RIGHT', 
+                      body: `**[${severity}]** ${code}${message}`
+                    });
+                  }
+                }
+              } catch (e) {
+                console.error('Failed to parse line:', line, e);
+              }
+            }
+
+            if (comments.length === 0) {
+              console.log('No diagnostics to report as comments.');
+              return;
+            }
+
+            console.log(`Prepared ${comments.length} comments to post.`);
+
+            try {
+              const { owner, repo } = context.repo;
+              await github.rest.pulls.createReview({
+                owner,
+                repo,
+                pull_number: PULL_REQUEST_NUMBER,
+                commit_id: COMMIT_SHA,
+                body: '🤖 Static analysis found the following issues:',
+                event: 'COMMENT',
+                comments: comments
+              });
+              console.log('Successfully posted review comments!');
+            } catch (error) {
+              console.error('Error posting review comments to GitHub:', error);
+              throw error;
+            }
