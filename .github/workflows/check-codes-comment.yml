@@ -71,7 +71,7 @@ jobs:
                 const data = JSON.parse(report);
 
                 const filePath = data.location?.path;
-                const line = data.range?.start?.line;
+                const line = data.location?.range?.start?.line;
                 const message = data.message;
                 const severity = data.severity || 'INFO';
                 const code = data.code?.value ? `[${data.code.value}] ` : '';
