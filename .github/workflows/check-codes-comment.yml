@@ -14,9 +14,7 @@ permissions:
 jobs:
   comment:
     runs-on: ubuntu-latest
-    if: >
-      github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'failure'
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'failure'
     steps:
       - name: Checkout Script
         uses: actions/checkout@v7
@@ -34,7 +32,6 @@ jobs:
       - name: Generate Review Comment
         uses: actions/github-script@v9
         env:
-          COMMIT_SHA_PATH: ${{ runner.temp }}/checkstyle-artifact/COMMIT_SHA
           REPORTS_PATH: ${{ runner.temp }}/checkstyle-artifact/ALL_REPORTS.jsonl
           PULL_REQUEST_NUMBER_PATH: ${{ runner.temp }}/checkstyle-artifact/PULL_REQUEST_NUMBER
         with:

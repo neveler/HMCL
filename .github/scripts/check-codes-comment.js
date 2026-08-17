@@ -2,11 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = async ({ github, context, core }) => {
-    if (!fs.existsSync(process.env.COMMIT_SHA_PATH) || !fs.statSync(process.env.COMMIT_SHA_PATH).isFile()) {
-        core.info("No commit sha file found.");
-        return;
-    }
-
     if (!fs.existsSync(process.env.PULL_REQUEST_NUMBER_PATH) || !fs.statSync(process.env.PULL_REQUEST_NUMBER_PATH).isFile()) {
         core.info("No pull request number file found.");
         return;
@@ -17,12 +12,6 @@ module.exports = async ({ github, context, core }) => {
         return;
     }
 
-    const COMMIT_SHA = fs.readFileSync(process.env.COMMIT_SHA_PATH, "utf8").trim();
-    if (!/^[0-9a-fA-F]{40}$/.test(COMMIT_SHA)) {
-        core.info("Parse COMMIT_SHA error.");
-        return;
-    }
-
     const PULL_REQUEST_NUMBER = parseInt(fs.readFileSync(process.env.PULL_REQUEST_NUMBER_PATH, "utf8").trim(), 10);
     if (isNaN(PULL_REQUEST_NUMBER)) {
         core.info("Parse PULL_REQUEST_NUMBER error.");
@@ -30,6 +19,36 @@ module.exports = async ({ github, context, core }) => {
     }
 
     const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split("\n").filter(Boolean);
+
+    const { owner, repo } = context.repo;
+    const { data: pr } = await octokit.rest.pulls.get({
+        owner,
+        repo,
+        pull_number: PULL_REQUEST_NUMBER,
+    });
+    core.info(`debug: pr(${JSON.stringify(pr, undefined, 2)})`);
+
+    const run = context.payload.workflow_run;
+    core.info(`debug: run(${JSON.stringify(run, undefined, 2)})`);
+    if (pr.head.sha !== run.head_sha) {
+        core.info("debug: pr.head.sha !== run.head_sha");
+        return;
+    }
+
+    if (pr.head.ref !== run.head_branch) {
+        core.info("debug: pr.head.ref !== run.head_branch");
+        return;
+    }
+
+    if (pr.head.repo.full_name !== run.head_repository.full_name) {
+        core.info("debug: pr.head.repo.full_name !== run.head_repository.full_name");
+        return;
+    }
+
+    if (pr.user.login !== run.actor.login) {
+        core.info("debug: pr.user.login !== run.actor.login");
+        return;
+    }
 
     const comments = [];
     for (const report of ALL_REPORTS) {
@@ -63,12 +82,11 @@ module.exports = async ({ github, context, core }) => {
     core.info(`Prepared ${comments.length} comments to post.`);
 
     try {
-        const { owner, repo } = context.repo;
         await github.rest.pulls.createReview({
             owner,
             repo,
             pull_number: PULL_REQUEST_NUMBER,
-            commit_id: COMMIT_SHA,
+            commit_id: run.head_sha,
             body: "🤖 Static analysis found the following issues:",
             event: "COMMENT",
             comments: comments
