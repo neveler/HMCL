@@ -74,7 +74,7 @@ jobs:
                 const line = data.range?.start?.line;
                 const message = data.message;
                 const severity = data.severity || 'INFO';
-                const code = data.code?.value ? `[${diagnostic.code.value}] ` : '';
+                const code = data.code?.value ? `[${data.code.value}] ` : '';
 
                 if (filePath && line) {
                   comments.push({
