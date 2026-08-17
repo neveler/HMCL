@@ -10,11 +10,6 @@ on:
       - '**.java'
       - '**.properties'
 
-permissions:
-  checks: write
-  contents: read
-  pull-requests: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,8 +30,8 @@ jobs:
       - if: failure()
         name: Save PR Info
         run: |
-          echo ${{ github.event.number }} > PULL_REQUEST_NUMBER
-          echo ${{ github.sha }} > COMMIT_SHA
+          echo "${{ github.event.number }}" > PULL_REQUEST_NUMBER
+          echo "${{ github.sha }}" > COMMIT_SHA
       - if: failure()
         name: Setup reviewdog
         uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252 # v1.4.0
@@ -62,4 +57,3 @@ jobs:
             COMMIT_SHA
             ALL_REPORTS.jsonl
             PULL_REQUEST_NUMBER
-          if-no-files-found: ignore
