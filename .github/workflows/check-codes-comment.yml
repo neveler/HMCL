@@ -85,7 +85,7 @@ jobs:
                   });
                 }
               } catch (e) {
-                console.error('Failed to parse line:', line, e);
+                console.error('Failed to parse report:', report, e);
               }
             }
 
