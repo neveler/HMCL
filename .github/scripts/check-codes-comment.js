@@ -21,7 +21,7 @@ module.exports = async ({ github, context, core }) => {
     const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split("\n").filter(Boolean);
 
     const { owner, repo } = context.repo;
-    const { data: pr } = await octokit.rest.pulls.get({
+    const { data: pr } = await github.rest.pulls.get({
         owner,
         repo,
         pull_number: PULL_REQUEST_NUMBER,
