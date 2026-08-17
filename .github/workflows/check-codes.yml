@@ -36,11 +36,27 @@ jobs:
         name: Save PR Number
         run: echo ${{ github.event.number }} > PULL_REQUEST_NUMBER
       - if: failure()
+        name: Setup reviewdog
+        uses: reviewdog/action-setup@d8edfce3dd5e1ec6978745e801f9c50b5ef80252 # v1.4.0
+      - if: failure()
+        name: Generate Reports
+        run: |
+          OUTPUT_FILE="ALL_REPORTS.jsonl"
+          > "$OUTPUT_FILE"
+          find . -path "*/build/reports/checkstyle/main.xml" | while read -r xml_file; do
+            if [ -s "$xml_file" ]; then
+              echo "Processing $xml_file..."
+              cat "$xml_file" | reviewdog -f=checkstyle -name="checkstyle" -reporter=rdjsonl >> "$OUTPUT_FILE"
+            else
+              echo "Skipping empty or missing report: $xml_file"
+            fi
+          done
+      - if: failure()
         name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: checkstyle-artifact
           path: |
+            ALL_REPORTS.jsonl
             PULL_REQUEST_NUMBER
-            **/build/reports/checkstyle/main.xml
           if-no-files-found: ignore
