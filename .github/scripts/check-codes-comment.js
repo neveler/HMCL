@@ -1,62 +1,68 @@
 const fs = require("fs");
-const path = require("path");
 
 module.exports = async ({ github, context, core }) => {
-    if (!fs.existsSync(process.env.PULL_REQUEST_NUMBER_PATH) || !fs.statSync(process.env.PULL_REQUEST_NUMBER_PATH).isFile()) {
-        core.info("No pull request number file found.");
+    const prNumberPath = process.env.PULL_REQUEST_NUMBER_PATH;
+    if (!prNumberPath || !fs.existsSync(prNumberPath) || !fs.statSync(prNumberPath).isFile()) {
+        core.info("Pull request number file not found.");
         return;
     }
 
-    if (!fs.existsSync(process.env.REPORTS_PATH) || !fs.statSync(process.env.REPORTS_PATH).isFile()) {
-        core.info("No reports file found.");
+    const reportsPath = process.env.REPORTS_PATH;
+    if (!reportsPath || !fs.existsSync(reportsPath) || !fs.statSync(reportsPath).isFile()) {
+        core.info("Reports file not found.");
         return;
     }
 
-    const PULL_REQUEST_NUMBER = parseInt(fs.readFileSync(process.env.PULL_REQUEST_NUMBER_PATH, "utf8").trim(), 10);
+    const PULL_REQUEST_NUMBER = parseInt(fs.readFileSync(prNumberPath, "utf8").trim(), 10);
     if (isNaN(PULL_REQUEST_NUMBER)) {
-        core.info("Parse PULL_REQUEST_NUMBER error.");
+        core.info("Failed to parse the pull request number.");
         return;
     }
-
-    const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split("\n").filter(Boolean);
 
     const { owner, repo } = context.repo;
-    const { data: pr } = await github.rest.pulls.get({
-        owner,
-        repo,
-        pull_number: PULL_REQUEST_NUMBER,
-    });
-    core.info(`pr: ${JSON.stringify(pr, undefined, 2)}`);
 
+    let pr;
+    try {
+        const response = await github.rest.pulls.get({
+            owner,
+            repo,
+            pull_number: PULL_REQUEST_NUMBER,
+        });
+        pr = response.data;
+    } catch (error) {
+        core.error(`Failed to fetch PR #${PULL_REQUEST_NUMBER}: ${error.message}`);
+        return;
+    }
+
+    core.info(`Current PR state: ${pr.state}`);
     if (pr.state !== "open") {
-        core.info("pr.state !== open");
+        core.info("The pull request is not open. Skipping comment creation.");
         return;
     }
 
     const run = context.payload.workflow_run;
-    core.info(`run: ${JSON.stringify(run, undefined, 2)}`);
+    if (!run) {
+        core.warning("context.payload.workflow_run is undefined. Ensure this script runs on the 'workflow_run' event.");
+        return;
+    }
 
     if (pr.head.sha !== run.head_sha) {
-        core.info("pr.head.sha !== run.head_sha");
+        core.info("PR head SHA does not match the workflow run head SHA. Skipping.");
         return;
     }
 
     if (pr.head.ref !== run.head_branch) {
-        core.info("pr.head.ref !== run.head_branch");
+        core.info("PR head branch does not match the workflow run head branch. Skipping.");
         return;
     }
 
     if (pr.head.repo.full_name !== run.head_repository.full_name) {
-        core.info("pr.head.repo.full_name !== run.head_repository.full_name");
-        return;
-    }
-
-    if (pr.user.login !== run.actor.login) {
-        core.info("pr.user.login !== run.actor.login");
+        core.info("PR head repository fullname does not match the workflow run head repository fullname. Skipping.");
         return;
     }
 
     const comments = [];
+    const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split("\n").filter(Boolean);
     for (const report of ALL_REPORTS) {
         try {
             const data = JSON.parse(report);
@@ -76,16 +82,16 @@ module.exports = async ({ github, context, core }) => {
                 });
             }
         } catch (error) {
-            core.error(`Failed to parse report: ${report} ${error}`);
+            core.error(`Failed to parse report line: "${report}". Error: ${error.message}`);
         }
     }
 
     if (comments.length === 0) {
-        core.info("No diagnostics to report as comments.");
+        core.info("No diagnostics found to report as comments.");
         return;
     }
 
-    core.info(`Prepared ${comments.length} comments to post.`);
+    core.info(`Successfully prepared ${comments.length} comment${comments.length > 1 ? "s" : ""} to post.`);
 
     try {
         await github.rest.pulls.createReview({
@@ -97,9 +103,8 @@ module.exports = async ({ github, context, core }) => {
             event: "COMMENT",
             comments: comments
         });
-        core.info("Successfully posted review comments!");
+        core.info("Review comments successfully posted to the pull request.");
     } catch (error) {
-        core.error(`Error posting review comments to GitHub: ${error}`);
-        throw error;
+        core.error(`Failed to post review comments to GitHub: ${error.message}`);
     }
 }
