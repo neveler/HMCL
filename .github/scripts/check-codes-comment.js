@@ -67,7 +67,7 @@ module.exports = async ({ github, context, core }) => {
                     path: filePath,
                     line,
                     side: "RIGHT",
-                    body: `**[${severity}]** ${code}${message}`
+                    body: `**[${severity}]** ${code}\n\n${message}`
                 });
             }
         } catch (error) {
