@@ -26,27 +26,28 @@ module.exports = async ({ github, context, core }) => {
         repo,
         pull_number: PULL_REQUEST_NUMBER,
     });
-    core.info(`debug: pr(${JSON.stringify(pr, undefined, 2)})`);
+    core.info(`pr: ${JSON.stringify(pr, undefined, 2)}`);
 
     const run = context.payload.workflow_run;
-    core.info(`debug: run(${JSON.stringify(run, undefined, 2)})`);
+    core.info(`run: ${JSON.stringify(run, undefined, 2)}`);
+
     if (pr.head.sha !== run.head_sha) {
-        core.info("debug: pr.head.sha !== run.head_sha");
+        core.info("pr.head.sha !== run.head_sha");
         return;
     }
 
     if (pr.head.ref !== run.head_branch) {
-        core.info("debug: pr.head.ref !== run.head_branch");
+        core.info("pr.head.ref !== run.head_branch");
         return;
     }
 
     if (pr.head.repo.full_name !== run.head_repository.full_name) {
-        core.info("debug: pr.head.repo.full_name !== run.head_repository.full_name");
+        core.info("pr.head.repo.full_name !== run.head_repository.full_name");
         return;
     }
 
     if (pr.user.login !== run.actor.login) {
-        core.info("debug: pr.user.login !== run.actor.login");
+        core.info("pr.user.login !== run.actor.login");
         return;
     }
 
