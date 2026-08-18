@@ -62,8 +62,8 @@ module.exports = async ({ github, context, core }) => {
     }
 
     const comments = [];
-    const ALL_REPORTS = fs.readFileSync(process.env.REPORTS_PATH, "utf8").trim().split("\n").filter(Boolean);
-    for (const report of ALL_REPORTS) {
+    const reports = fs.readFileSync(reportsPath, "utf8").trim().split("\n").filter(Boolean);
+    for (const report of reports) {
         try {
             const data = JSON.parse(report);
 
