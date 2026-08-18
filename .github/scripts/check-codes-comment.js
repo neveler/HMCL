@@ -28,6 +28,11 @@ module.exports = async ({ github, context, core }) => {
     });
     core.info(`pr: ${JSON.stringify(pr, undefined, 2)}`);
 
+    if (pr.state !== "open") {
+        core.info("pr.state !== open");
+        return;
+    }
+
     const run = context.payload.workflow_run;
     core.info(`run: ${JSON.stringify(run, undefined, 2)}`);
 
