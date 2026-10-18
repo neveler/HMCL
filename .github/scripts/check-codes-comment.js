@@ -79,7 +79,7 @@ module.exports = async ({ github, context, core }) => {
     }
 
     const comments = [];
-    const maxCommentCount = 10;
+    const maxCommentCount = 1;
     const reports = fs.readFileSync(reportsPath, "utf8").trim().split("\n").filter(Boolean);
     for (const report of reports) {
         if (comments.length >= maxCommentCount) break;
