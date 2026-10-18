@@ -72,6 +72,7 @@ jobs:
             echo "Running editorconfig-checker..."
             if ! editorconfig-checker -f codeclimate 2>/dev/null \
               | jq -c '.[]? // empty | {
+                  source: "editorconfig-checker",
                   message: .description,
                   location: {
                     path: .location.path,
