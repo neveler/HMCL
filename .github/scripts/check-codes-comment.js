@@ -61,6 +61,20 @@ module.exports = async ({ github, context, core }) => {
         return;
     }
 
+    const changedFiles = new Set();
+    try {
+        const files = await github.paginate(github.rest.pulls.listFiles, {
+            owner,
+            repo,
+            pull_number: PULL_REQUEST_NUMBER,
+        });
+
+        files.forEach(f => changedFiles.add(f.filename));
+    } catch (error) {
+        core.setFailed(`Failed to fetch PR files: ${error.message}`);
+        return;
+    }
+
     const comments = [];
     const maxCommentCount = 10;
     const reports = fs.readFileSync(reportsPath, "utf8").trim().split("\n").filter(Boolean);
@@ -79,16 +93,26 @@ module.exports = async ({ github, context, core }) => {
             if (typeof code !== "object" || Array.isArray(code)) continue;
 
             const path = location.path;
-            const line = location.range?.start?.line;
+            if (!changedFiles.has(path)) continue;
+
+            const startLine = location.range?.start?.line;
+            const endLine = location.range?.end?.line ?? startLine;
             const codeText = code.value ? `[${code.value}] ` : "";
 
-            if (path && line) {
-                comments.push({
+            if (path && startLine) {
+                const comment = {
                     path,
-                    line,
+                    line: endLine,
                     side: "RIGHT",
                     body: `**[${severityText}]** ${codeText}\n\n${message}`
-                });
+                };
+
+                if (startLine !== endLine && startLine < endLine) {
+                    comment.start_line = startLine;
+                    comment.start_side = "RIGHT";
+                }
+
+                comments.push(comment);
             }
         } catch (error) {
             core.warning(`Failed to parse report: ${error.message}`);
