@@ -42,6 +42,7 @@ jobs:
 
       - name: Run Code Checks (EditorConfig & Gradle)
         run: |
+          echo "${{ github.event.number }}" > PULL_REQUEST_NUMBER
           REPORT_FILE="ALL_REPORTS.jsonl"
           > "$REPORT_FILE"
 
@@ -66,7 +67,7 @@ jobs:
 
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "Running editorconfig-checker..."
-            if ! editorconfig-checker -f gcc | reviewdog -f=gcc -name="editorconfig-checker" -reporter=rdjsonl -filter-mode=nofilter >> "$REPORT_FILE"; then
+            if ! editorconfig-checker -f gcc | reviewdog -efm="%f:%l:%c: %m" -name="editorconfig-checker" -reporter=rdjsonl -filter-mode=nofilter >> "$REPORT_FILE"; then
               HAS_ERROR=1
             fi
           fi
