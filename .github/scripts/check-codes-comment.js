@@ -79,7 +79,7 @@ module.exports = async ({ github, context, core }) => {
     }
 
     const comments = [];
-    const maxCommentCount = 3;
+    const maxCommentCount = 10;
     const reports = fs.readFileSync(reportsPath, "utf8").trim().split("\n").filter(Boolean);
     for (const report of reports) {
         if (comments.length >= maxCommentCount) break;
@@ -131,15 +131,31 @@ module.exports = async ({ github, context, core }) => {
     core.info(`Successfully prepared ${comments.length} comment${comments.length > 1 ? "s" : ""} to post.`);
 
     try {
-        await github.rest.pulls.createReview({
+        // await github.rest.pulls.createReview({
+        //     owner,
+        //     repo,
+        //     pull_number: PULL_REQUEST_NUMBER,
+        //     commit_id: run.head_sha,
+        //     body: "🤖 Static analysis found the following issues (max count 10):",
+        //     event: "COMMENT",
+        //     comments: comments
+        // });
+
+        let commentBody = "<!-- review comment flag -->🤖 Static analysis found the following issues (max count 10):";
+        for (const comment of comments) {
+            commentBody += "\n\n";
+            commentBody += `https://github.com/${owner}/${repo}/blob/${run.head_sha}/${comment.path}#L${comment.start_line ?? comment.line}-L${comment.line}\n\n`;
+            commentBody += comment.body;
+            commentBody += "\n\n---";
+        }
+
+        await github.rest.issues.createComment({
             owner,
             repo,
-            pull_number: PULL_REQUEST_NUMBER,
-            commit_id: run.head_sha,
-            body: "🤖 Static analysis found the following issues (max count 10):",
-            event: "COMMENT",
-            comments: comments
+            issue_number: PULL_REQUEST_NUMBER,
+            body: commentBody,
         });
+
         core.info("Review comments successfully posted to the pull request.");
     } catch (error) {
         core.setFailed(`Failed to post review comments to GitHub: ${error.message}`);
