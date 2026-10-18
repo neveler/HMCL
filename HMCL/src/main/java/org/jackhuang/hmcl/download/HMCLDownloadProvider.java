@@ -40,6 +40,7 @@ import java.util.*;
 @NotNullByDefault
 public final class HMCLDownloadProvider extends DownloadProvider {
     private volatile DownloadSource versionListSource = DownloadSource.DEFAULT;
+
     private volatile DownloadSource fileSource = DownloadSource.DEFAULT;
 
     private static DownloadCandidates getCandidates(
