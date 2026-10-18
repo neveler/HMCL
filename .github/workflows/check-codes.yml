@@ -42,8 +42,11 @@ jobs:
 
       - name: Run Code Checks (EditorConfig & Gradle)
         run: |
-          echo "${{ github.event.number }}" > PULL_REQUEST_NUMBER
-          REPORT_FILE="ALL_REPORTS.jsonl"
+          ARTIFACT_DIR="${{ runner.temp }}/artifact"
+          mkdir -p "$ARTIFACT_DIR"
+
+          echo "${{ github.event.number }}" > "$ARTIFACT_DIR/PULL_REQUEST_NUMBER"
+          REPORT_FILE="$ARTIFACT_DIR/ALL_REPORTS.jsonl"
           > "$REPORT_FILE"
 
           HAS_ERROR=0
@@ -67,13 +70,37 @@ jobs:
 
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "Running editorconfig-checker..."
-            if ! editorconfig-checker -f gcc | reviewdog -efm="%f:%l:%c: %m" -name="editorconfig-checker" -reporter=rdjsonl -filter-mode=nofilter >> "$REPORT_FILE"; then
+            if ! editorconfig-checker -f codeclimate 2>/dev/null \
+              | jq -c '.[]? // empty | {
+                  message: .description,
+                  location: {
+                    path: .location.path,
+                    range: {
+                      start: {
+                        line: (.location.lines.begin // .location.line // 1),
+                        column: 1
+                      },
+                      end: {
+                        line: (.location.lines.end // .location.lines.begin // .location.line // 1),
+                        column: 1
+                      }
+                    }
+                  },
+                  severity: (
+                    if .severity == "blocker" or .severity == "critical" or .severity == "major" then "ERROR"
+                    elif .severity == "minor" then "WARNING"
+                    else "INFO"
+                    end
+                  ),
+                  code: {
+                    value: .check_name
+                  }
+                }' >> "$REPORT_FILE"; then
               HAS_ERROR=1
             fi
           fi
 
           exit "$HAS_ERROR"
-
       - if: failure() && github.event_name == 'pull_request'
         name: Upload Check Reports Artifact
         uses: actions/upload-artifact@v7
