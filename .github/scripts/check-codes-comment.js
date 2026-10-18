@@ -115,6 +115,7 @@ module.exports = async ({ github, context, core }) => {
                     comment.start_side = "RIGHT";
                 }
 
+                console.log("debug:", comment);
                 comments.push(comment);
             }
         } catch (error) {
