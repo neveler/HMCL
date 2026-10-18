@@ -55,7 +55,7 @@ jobs:
             find . -path "*/build/reports/checkstyle/*.xml" | while read -r xml_file; do
               if [ -s "$xml_file" ]; then
                 echo "Processing $xml_file..."
-                reviewdog -f=checkstyle -name="checkstyle" -reporter=rdjsonl -filter-mode=file < "$xml_file" >> "$REPORT_FILE"
+                reviewdog -f=checkstyle -name="checkstyle" -reporter=rdjsonl < "$xml_file" >> "$REPORT_FILE"
               else
                 echo "Skipping empty or missing report: $xml_file"
               fi
@@ -95,7 +95,7 @@ jobs:
                   code: {
                     value: .check_name
                   }
-                }' | reviewdog -f=rdjsonl -name="editorconfig-checker" -reporter=rdjsonl -filter-mode=file >> "$REPORT_FILE"; then
+                }' | reviewdog -f=rdjsonl -name="editorconfig-checker" -reporter=rdjsonl >> "$REPORT_FILE"; then
               HAS_ERROR=1
             fi
           fi
