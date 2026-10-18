@@ -69,7 +69,10 @@ module.exports = async ({ github, context, core }) => {
             pull_number: PULL_REQUEST_NUMBER,
         });
 
-        files.forEach(f => changedFiles.add(f.filename));
+        for (const file of files) {
+            changedFiles.add(file.filename);
+            console.log("debug:", file.filename);
+        }
     } catch (error) {
         core.setFailed(`Failed to fetch PR files: ${error.message}`);
         return;
