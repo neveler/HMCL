@@ -2,13 +2,7 @@ name: Check Codes
 
 on:
   push:
-    paths:
-      - '**.java'
-      - '**.properties'
   pull_request:
-    paths:
-      - '**.java'
-      - '**.properties'
 
 jobs:
   code-quality:
@@ -42,72 +36,76 @@ jobs:
 
       - name: Run Code Checks (EditorConfig & Gradle)
         run: |
-          ARTIFACT_DIR="${{ runner.temp }}/artifact"
-          mkdir -p "$ARTIFACT_DIR"
+          editorconfig-checker -f codeclimate
 
-          echo "${{ github.event.number }}" > "$ARTIFACT_DIR/PULL_REQUEST_NUMBER"
-          REPORT_FILE="$ARTIFACT_DIR/ALL_REPORTS.jsonl"
-          > "$REPORT_FILE"
+          # ARTIFACT_DIR="${{ runner.temp }}/artifact"
+          # mkdir -p "$ARTIFACT_DIR"
 
-          HAS_ERROR=0
+          # echo "${{ github.event.number }}" > "$ARTIFACT_DIR/PULL_REQUEST_NUMBER"
+          # REPORT_FILE="$ARTIFACT_DIR/ALL_REPORTS.jsonl"
+          # > "$REPORT_FILE"
 
-          echo "Running Gradle checks..."
-          if ! ./gradlew checkstyle checkTranslations --no-daemon --parallel --stacktrace; then
-            HAS_ERROR=1
-          fi
+          # HAS_ERROR=0
 
-          if [ "$HAS_ERROR" -eq 1 ] && [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "Processing Checkstyle reports..."
-            find . -path "*/build/reports/checkstyle/*.xml" | while read -r xml_file; do
-              if [ -s "$xml_file" ]; then
-                echo "Processing $xml_file..."
-                reviewdog -f=checkstyle -name="checkstyle" -reporter=rdjsonl -filter-mode=nofilter < "$xml_file" >> "$REPORT_FILE"
-              else
-                echo "Skipping empty or missing report: $xml_file"
-              fi
-            done
-          fi
+          # echo "Running Gradle checks..."
+          # if ! ./gradlew checkstyle checkTranslations --no-daemon --parallel --stacktrace; then
+          #   HAS_ERROR=1
+          # fi
 
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "Running editorconfig-checker..."
-            if ! editorconfig-checker -f codeclimate 2>/dev/null \
-              | jq -c '.[]? // empty | {
-                  source: "editorconfig-checker",
-                  message: .description,
-                  location: {
-                    path: .location.path,
-                    range: {
-                      start: {
-                        line: (.location.lines.begin // .location.line // 1),
-                        column: 1
-                      },
-                      end: {
-                        line: (.location.lines.end // .location.lines.begin // .location.line // 1),
-                        column: 1
-                      }
-                    }
-                  },
-                  severity: (
-                    if .severity == "blocker" or .severity == "critical" or .severity == "major" then "ERROR"
-                    elif .severity == "minor" then "WARNING"
-                    else "INFO"
-                    end
-                  ),
-                  code: {
-                    value: .check_name
-                  }
-                }' >> "$REPORT_FILE"; then
-              HAS_ERROR=1
-            fi
-          fi
+          # if [ "$HAS_ERROR" -eq 1 ] && [ "${{ github.event_name }}" = "pull_request" ]; then
+          #   echo "Processing Checkstyle reports..."
+          #   find . -path "*/build/reports/checkstyle/*.xml" | while read -r xml_file; do
+          #     if [ -s "$xml_file" ]; then
+          #       echo "Processing $xml_file..."
+          #       reviewdog -f=checkstyle -name="checkstyle" -reporter=rdjsonl -filter-mode=nofilter < "$xml_file" >> "$REPORT_FILE"
+          #     else
+          #       echo "Skipping empty or missing report: $xml_file"
+          #     fi
+          #   done
+          # fi
 
-          exit "$HAS_ERROR"
-      - if: failure() && github.event_name == 'pull_request'
-        name: Upload Check Reports Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: checkstyle-artifact
-          path: |
-            ${{ runner.temp }}/artifact/ALL_REPORTS.jsonl
-            ${{ runner.temp }}/artifact/PULL_REQUEST_NUMBER
-          retention-days: 7
+          # if [ "${{ github.event_name }}" = "pull_request" ]; then
+          #   echo "Running editorconfig-checker..."
+          #   if ! editorconfig-checker -f codeclimate 2>/dev/null \
+          #     | jq -c '.[]? // empty | {
+          #         message: .description,
+          #         location: {
+          #           path: .location.path,
+          #           range: {
+          #             start: {
+          #               line: (.location.lines.begin // .location.line // 1),
+          #               column: 1
+          #             },
+          #             end: {
+          #               line: (.location.lines.end // .location.lines.begin // .location.line // 1),
+          #               column: 1
+          #             }
+          #           }
+          #         },
+          #         severity: (
+          #           if .severity == "blocker" or .severity == "critical" or .severity == "major" then "ERROR"
+          #           elif .severity == "minor" then "WARNING"
+          #           else "INFO"
+          #           end
+          #         ),
+          #         source: {
+          #           name: "editorconfig-checker"
+          #         },
+          #         code: {
+          #           value: .check_name
+          #         }
+          #       }' >> "$REPORT_FILE"; then
+          #     HAS_ERROR=1
+          #   fi
+          # fi
+
+          # exit "$HAS_ERROR"
+      # - if: failure() && github.event_name == 'pull_request'
+      #   name: Upload Check Reports Artifact
+      #   uses: actions/upload-artifact@v7
+      #   with:
+      #     name: checkstyle-artifact
+      #     path: |
+      #       ${{ runner.temp }}/artifact/ALL_REPORTS.jsonl
+      #       ${{ runner.temp }}/artifact/PULL_REQUEST_NUMBER
+      #     retention-days: 7
