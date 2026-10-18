@@ -107,6 +107,6 @@ jobs:
         with:
           name: checkstyle-artifact
           path: |
-            ALL_REPORTS.jsonl
-            PULL_REQUEST_NUMBER
+            ${{ runner.temp }}/artifact/ALL_REPORTS.jsonl
+            ${{ runner.temp }}/artifact/PULL_REQUEST_NUMBER
           retention-days: 7
