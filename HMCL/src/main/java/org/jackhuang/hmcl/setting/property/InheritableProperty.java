@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.List;
+import java.util.Map;
 
 /// A setting value whose instance override state is stored in `GameSettings.Instance.overrideProperties`.
 ///
