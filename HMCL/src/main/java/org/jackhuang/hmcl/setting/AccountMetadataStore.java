@@ -29,7 +29,7 @@ import org.jackhuang.hmcl.util.gson.JsonSerializable;
 import org.jackhuang.hmcl.util.gson.ObservableSetting;
 import org.jetbrains.annotations.NotNullByDefault;
 
-import java.util.Map;
+// test
 import java.util.List;
 import java.util.Objects;
 
